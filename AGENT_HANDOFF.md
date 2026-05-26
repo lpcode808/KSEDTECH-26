@@ -2,6 +2,25 @@
 
 This document is for any future agent, merge harness, or teammate combining this project with another codebase.
 
+## 2026-05-26 Add "How It Works" Easter Egg and Beginner Walkthrough
+
+Added a subtle, non-technical developer/curious-attendee walkthrough as an easter egg:
+
+- **The Easter Egg Link:** Added a `<div aria-hidden="true">` with a monospace `"HOW THIS WORKS →"` link at the very bottom of the main `index.html` footer. It is styled quietly (low opacity, inherited color, no-decoration unless hovered) to keep the app clean for regular conference attendees while rewarding curious searchers.
+- **The Walkthrough Page (`_docs/beginner-explainer.html`):** Created a beautiful, fully single-file HTML artifact explaining how this vanilla static web app works. Uses the default workspace typography (`Sora` + `Source Serif 4` + `JetBrains Mono`) and is themed to match the deep blues and bright teal accents of the CONNECT26 palette.
+- **Core Walkthrough Content:** Guides non-technical readers through the pure client-side mechanics:
+  1. **Vanilla Static files** (zero server/database/accounts).
+  2. **Offline-first logic via Service Worker Cache Storage** (`sw.js`).
+  3. **Device-local preference state via `localStorage`** (for stars & personal notes, keeping it completely private).
+  4. **Sub-millisecond local search filter routing.**
+  5. **Purely client-side SVG-based mathematical QR-code generator** for offline sharing.
+  6. **Colophon** documenting the collaborative conversational workflow with AI agents and the "portfolio as product" philosophy.
+
+**How other agents can contribute later:**
+- Update or extend `/_docs/beginner-explainer.html` if new client-side features are added (like session-level stars or offline notes syncing).
+- Ensure the relative path to `_docs/beginner-explainer.html` remains fully intact in any future index.html refactoring.
+- Check that future service worker changes include caching or updating references if any structural files change.
+
 ## 2026-05-25 Promote App to Root + Persona Pass
 
 Two changes in one session:

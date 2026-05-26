@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How this app works — a beginner's walkthrough</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fffbf5;
+    --ink: #06113c;
+    --ink-soft: rgba(6, 17, 60, 0.7);
+    --rule: rgba(6, 17, 60, 0.12);
+    --primary: #06226b;
+    --primary-light: #12347d;
+    --teal: #0c8096;
+    --teal-dim: rgba(12, 128, 150, 0.08);
+    --orange: #e262b9;
+    --code-bg: #0c1836;
+    --code-ink: #f0f4fc;
+    --code-highlight: #7cc9dd;
+    --code-comment: rgba(240, 244, 252, 0.4);
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'Sora', system-ui, sans-serif;
+    --serif: 'Source Serif 4', Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    background-image:
+      linear-gradient(to right, rgba(6, 17, 60, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(6, 17, 60, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 64px 24px 120px;
+  }
+
+  /* Title block — engineering drawing/blueprint style */
+  .title-block {
+    border: 1.5px solid var(--ink);
+    padding: 0;
+    margin-bottom: 56px;
+    background: #fff;
+  }
+  .title-block .tb-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+  .title-block .tb-row:last-child { border-bottom: 0; }
+  .title-block .tb-cell {
+    padding: 14px 16px;
+    border-right: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .title-block .tb-cell:last-child { border-right: 0; }
+  .title-block .tb-cell .label {
+    color: var(--ink-soft);
+    font-size: 9px;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .title-block .tb-cell .value { color: var(--ink); font-weight: 700; }
+  .title-block .tb-main {
+    padding: 32px 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .title-block .tb-main h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 28px;
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+  }
+  .title-block .tb-main p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 64px 0 16px;
+    color: var(--primary);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  h2 .num {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: var(--teal-dim);
+  }
+
+  p, ul, ol {
+    margin: 0 0 20px;
+  }
+  
+  strong {
+    color: var(--primary);
+  }
+
+  /* Code Blocks */
+  pre {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 24px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  code {
+    font-family: var(--mono);
+    font-size: 14px;
+    background: rgba(6, 17, 60, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--primary-light);
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+  .comment { color: var(--code-comment); }
+  .keyword { color: var(--code-highlight); font-weight: bold; }
+  .string { color: #f285da; }
+
+  /* Inset Notes/Callouts */
+  .callout {
+    border-left: 3px solid var(--teal);
+    background: rgba(12, 128, 150, 0.04);
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* List Styling */
+  ol, ul {
+    padding-left: 24px;
+  }
+  li {
+    margin-bottom: 12px;
+  }
+  li::marker {
+    color: var(--teal);
+    font-weight: bold;
+  }
+
+  /* Footer and Back Link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: transform 0.2s;
+  }
+  .back-link:hover {
+    transform: translateX(-4px);
+  }
+  
+  .footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 80px;
+    padding-top: 32px;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  .footer a {
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .wrap { padding: 32px 16px 80px; }
+    .title-block .tb-row { grid-template-columns: 1fr; }
+    .title-block .tb-cell { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .title-block .tb-cell:last-child { border-bottom: 0; }
+    .title-block .tb-main h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../index.html" class="back-link">← Back to CONNECT26 Guide</a>
+
+  <div class="title-block">
+    <div class="tb-main">
+      <h1>How this app works</h1>
+      <p>A non-technical walkthrough explaining the architecture, code choices, and offline mechanics of the Kamehameha Schools Ed Tech Conference schedule guide.</p>
+    </div>
+    <div class="tb-row">
+      <div class="tb-cell">
+        <span class="label">Project</span>
+        <span class="value">CONNECT26 App</span>
+      </div>
+      <div class="tb-cell">
+        <span class="label">Target Audience</span>
+        <span class="value">Educators &amp; Students</span>
+      </div>
+    </div>
+    <div class="tb-row">
+      <div class="tb-cell">
+        <span class="label">Stack</span>
+        <span class="value">HTML5, Vanilla CSS, JS</span>
+      </div>
+      <div class="tb-cell">
+        <span class="label">Offline-Ready</span>
+        <span class="value">Yes (PWA Service Worker)</span>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="num">01</span> What is this app?</h2>
+  <p>This is a <strong>progressive web app (PWA)</strong> built to serve as a high-speed, offline-capable companion for attendees of the 2026 Kamehameha Schools Education Technology Conference (CONNECT26) at the Neal S. Blaisdell Center.</p>
+  <p>Instead of packing a heavy, general-purpose app framework that forces you to download megabytes of code, this is a custom-coded <strong>single-file client interface</strong>. It loads instantly, filters through all 55+ sessions in real-time as you type, and lets you take private notes on your own device.</p>
+
+  <div class="callout">
+    <p><strong>A "Vanilla" Philosophy:</strong> In the web development world, "vanilla" means plain, pure code written without frameworks like React, Angular, or Vue. We chose vanilla because it eliminates all build-step overhead, makes the codebase easy for anyone to read or modify, and performs flawlessly on older mobile devices.</p>
+  </div>
+
+  <h2><span class="num">02</span> The big picture: No accounts, no database, 100% private</h2>
+  <p>Almost every modern app forces you to create an account, log in, and send your activity back to a corporate cloud database. This app does the opposite. <strong>There is no server, no database, and no login required.</strong></p>
+  <p>The schedule data and speaker details are baked directly inside the application files. When you type in a personal note or click the star next to a speaker, that data is saved <strong>exclusively inside your browser's private sandbox</strong>. Your notes and favorite speakers are never transmitted across the network, making this app 100% private, instant, and entirely Yours.</p>
+
+  <h2><span class="num">03</span> The files: intentionally tiny</h2>
+  <p>The entire application consists of just three small, essential files sitting in a folder:</p>
+  <ol>
+    <li><code>index.html</code> — <strong>The Skeleton and the Data:</strong> Contains the structural layout, all 55+ sessions in an embedded data list, the CSS styles for the beautiful theme, and the script logic that powers the tabs and interactive features.</li>
+    <li><code>sw.js</code> — <strong>The Service Worker:</strong> A small helper script that acts as an offline proxy, telling the device to save the app files so it runs when cell reception is dead.</li>
+    <li><code>favicon.svg</code> — <strong>The Logo:</strong> A tiny, scalable graphic that appears in your browser tab or on your device's home screen.</li>
+  </ol>
+
+  <h2><span class="num">04</span> How offline mode works (The Service Worker)</h2>
+  <p>The Neal S. Blaisdell Center is notorious for dropping cell coverage and leaving Wi-Fi networks congested during peak conference times. To ensure attendees can always access their schedule and notes, the app uses a browser capability called a <strong>Service Worker</strong>.</p>
+  <p>A Service Worker is like a clever background butler. The first time you open the page while online, the Service Worker intercepts the request, grabs the app files, and tucks them away in a secure drawer on your device called the <strong>Cache Storage</strong>.</p>
+  <p>The next time you pull up the app—even if you're in a cellular dead zone—the background butler steps in before the browser can say "no connection" and immediately serves the cached files. The app loads instantly, offline, and ready to go.</p>
+
+  <pre><code><span class="comment">// Inside sw.js — caching the app so it works inside the venue</span>
+<span class="keyword">const</span> CACHE_NAME = <span class="string">'connect26-guide-v2'</span>;
+<span class="keyword">const</span> ASSETS = [
+  <span class="string">'./'</span>,
+  <span class="string">'./index.html'</span>,
+  <span class="string">'./favicon.svg'</span>
+];</code></pre>
+
+  <h2><span class="num">05</span> How your notes and stars are saved (localStorage)</h2>
+  <p>If there's no cloud database, how does the app remember which speakers you starred or what notes you typed when you close your browser tab or reboot your phone?</p>
+  <p>It uses <strong><code>localStorage</code></strong>—a built-in key-value vault provided by your web browser. Think of it like a private notebook that the browser keeps for this specific website. When you star a speaker or edit a note, the JavaScript code writes a tiny snippet of structured text to this vault:</p>
+
+  <pre><code><span class="comment">// How your browser holds your starred speakers</span>
+localStorage.setItem(<span class="string">'connect26_stars'</span>, JSON.stringify([<span class="string">'speaker-12'</span>, <span class="string">'speaker-34'</span>]));</code></pre>
+
+  <p>Because this vault resides directly on your physical hardware, reading and writing to it takes less than a millisecond. To prevent accidental data loss when switching browsers or clearing your history, the app includes a prominent <strong>Export button</strong> that lets you download your personal notes as a standard plain-text Markdown file.</p>
+
+  <h2><span class="num">06</span> Dynamic Search: Fast and local</h2>
+  <p>When you type a query in the search bar, traditional sites send that search word back to a server, wait for a database query, and refresh the page. That loop takes several seconds and breaks if you go offline.</p>
+  <p>In our app, search is fully local. A lightweight search routine is triggered on every keypress. It parses the entire 55-session catalog instantly using simple JavaScript matching:</p>
+
+  <pre><code><span class="comment">// Instant search logic inside index.html</span>
+<span class="keyword">const</span> matchesSearch = 
+  s.title.toLowerCase().includes(query) || 
+  s.speaker.toLowerCase().includes(query) || 
+  s.description.toLowerCase().includes(query);</code></pre>
+  
+  <p>This local matching evaluates all sessions in less than 5 milliseconds, hiding or revealing cards instantly as you type.</p>
+
+  <h2><span class="num">07</span> Sharing with QR codes (Purely Client-Side)</h2>
+  <p>The "Share this app" button at the bottom pops up a QR code modal. Many sites generate QR codes by hitting a web API (like Google Charts) or loading a heavy external library.</p>
+  <p>To keep the application light and fully independent, we embedded a simple <strong>pure client-side QR generator</strong> directly inside the script. It mathematically calculates the pixel grid of the QR code using a tiny, self-contained SVG generation function, meaning you can open the share modal and let a colleague scan your screen even when both of you are completely disconnected from the internet.</p>
+
+  <h2><span class="num">08</span> Glossary</h2>
+  <ul>
+    <li><strong>Client-Side</strong> — Code that runs directly on your device (computer or phone) rather than on a remote server.</li>
+    <li><strong>Static Site</strong> — A site composed of static files (HTML, CSS, JS) that are sent to your browser exactly as they are stored, without dynamic processing on the hosting server.</li>
+    <li><strong>Vanilla JavaScript</strong> — Pure JavaScript code written without relying on external libraries or frameworks.</li>
+    <li><strong>PWA (Progressive Web App)</strong> — A website that behaves like a native mobile application, utilizing modern browser APIs to support home-screen installation and offline capabilities.</li>
+  </ul>
+
+  <h2><span class="num">09</span> Colophon — How this was built</h2>
+  <p>This companion guide was built <strong>conversationally</strong> by Justin Lai, pairing with AI coding agents (Cascade, Claude Code, and Codex) in short, hyper-focused development iterations.</p>
+  <p>Instead of over-engineering the interface, the agents followed a strict <strong>"portfolio-as-a-product" philosophy</strong>, treating every design choice, screen layout, and accessibility landmark with high care. It proves that by using pure vanilla web technologies combined with agentic workflows, you can build highly reliable, exceptionally fast software that respects user privacy and runs anywhere.</p>
+
+  <div class="footer">
+    <p>CONNECT26 App Walkthrough · Built with care for Kamehameha Schools Kūkulu Kaiāulu</p>
+    <p><a href="../index.html">Back to Main App</a></p>
+  </div>
+</div>
+</body>
+</html>
