@@ -1243,6 +1243,7 @@
     }
 
     .export-btn,
+    .import-btn,
     .clear-notes-btn {
       display: flex;
       align-items: center;
@@ -1263,6 +1264,15 @@
       color: var(--bg);
     }
     .export-btn:hover { opacity: 0.9; }
+
+    .import-btn {
+      background: rgba(124, 201, 221, 0.1);
+      color: var(--teal);
+      border: 1px solid var(--border-active) !important;
+    }
+    .import-btn:hover {
+      background: rgba(124, 201, 221, 0.22);
+    }
 
     .clear-notes-btn {
       background: rgba(200, 83, 29, 0.12);
@@ -2352,6 +2362,7 @@
         <div class="notes-actions">
           <button class="notes-collapse-btn" id="collapseNotesBtn" type="button">Expand All</button>
           <button class="clear-notes-btn" id="clearNotesBtn" type="button" aria-haspopup="dialog">🗑 Clear All</button>
+          <button class="import-btn" id="importBtn" type="button" aria-haspopup="dialog">Import ↑</button>
           <button class="export-btn" id="exportBtn" type="button" aria-haspopup="dialog">Export ↓</button>
         </div>
       </div>
@@ -2396,8 +2407,45 @@
       </div>
       <div class="modal-footer">
         <button class="download-btn" id="downloadMarkdownBtn" type="button" hidden>Download .md Backup</button>
+        <button class="download-btn" id="downloadJsonBtn" type="button" style="background: rgba(124, 201, 221, 0.1); color: var(--teal); border: 1px solid var(--border-active);" hidden>Download JSON Backup</button>
         <button class="share-btn" id="shareBtn" type="button">Send to Notes…</button>
         <button class="copy-btn" id="copyBtn">Copy to Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import modal -->
+  <div class="modal-overlay hidden" id="importModal" role="dialog" aria-modal="true" aria-labelledby="importTitle">
+    <div class="modal-sheet">
+      <div class="modal-top">
+        <span class="modal-top-title" id="importTitle">Import My Notes</span>
+        <button class="modal-close" id="closeImportModal" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" style="padding: 1rem 1.25rem;">
+        <p class="modal-hint" style="margin-bottom: 0.85rem;">Restore your notes by selecting a JSON backup file or pasting the raw JSON text below.</p>
+        
+        <div style="margin-bottom: 1rem;">
+          <label class="confirm-label" for="importFileInput" style="font-weight:700; font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.03em;">Select JSON Backup File</label>
+          <input type="file" id="importFileInput" accept=".json" style="width: 100%; font: inherit; font-size:0.8rem; color: var(--text-muted); background: var(--surface-input); border: 1px solid var(--border); padding: 0.5rem; border-radius: var(--radius-sm); margin-top: 0.35rem; cursor:pointer;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label class="confirm-label" for="importTextarea" style="font-weight:700; font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.03em;">Or Paste Backup JSON String</label>
+          <textarea class="export-textarea" id="importTextarea" placeholder='{"connect26_notes_..."}' aria-label="Paste backup JSON string here" style="height: 110px; font-family: monospace; font-size: 0.8rem; margin-top: 0.35rem; width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-input); color: var(--text); padding: 0.5rem; resize: none; outline: none; margin-bottom: 0;"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.4rem; cursor: pointer;">
+          <input type="checkbox" id="importMergeCheckbox" checked style="accent-color: var(--teal); width: 18px; height: 18px; cursor: pointer;">
+          <label for="importMergeCheckbox" class="confirm-label" style="margin: 0; cursor: pointer; font-size: 0.82rem; color: var(--text);">
+            <strong>Merge with existing notes</strong> (keeps newer edits)
+          </label>
+        </div>
+        <p class="confirm-note" style="margin: 0 0 0.5rem; font-size: 0.72rem; color: var(--text-dim); line-height:1.4;">If unchecked, your current notes will be completely overwritten by the backup.</p>
+        
+        <p class="confirm-status" id="importStatus" style="font-size: 0.76rem; margin-top: 0.85rem; min-height: 18px; line-height: 1.4;"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="share-btn" id="confirmImportBtn" type="button" style="background: var(--teal); color: var(--bg); font-weight:700; width:100%;">Confirm Import</button>
       </div>
     </div>
   </div>
@@ -4666,6 +4714,23 @@
     return filename;
   }
 
+  function downloadExportJson() {
+    if (getNoteCount() === 0) return null;
+
+    const notes = getNotes();
+    const blob = new Blob([JSON.stringify(notes, null, 2)], { type: 'application/json;charset=utf-8' });
+    const objectUrl = URL.createObjectURL(blob);
+    const filename = `connect26-notes-backup-${Date.now()}.json`;
+    const link = document.createElement('a');
+    link.href = objectUrl;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 0);
+    return filename;
+  }
+
   function updateDownloadReminderTestState() {
     const tools = document.getElementById('notesTestTools');
     const status = document.getElementById('downloadReminderTestStatus');
@@ -4782,6 +4847,7 @@
   function updateExportModalState() {
     const shareBtn = document.getElementById('shareBtn');
     const downloadBtn = document.getElementById('downloadMarkdownBtn');
+    const downloadJsonBtn = document.getElementById('downloadJsonBtn');
     const reminderPrompt = document.getElementById('desktopDownloadPrompt');
     const exportHint = document.getElementById('exportHint');
     const hasNotes = getNoteCount() > 0;
@@ -4795,9 +4861,12 @@
     downloadBtn.hidden = !isDesktop;
     downloadBtn.disabled = !hasNotes;
 
+    downloadJsonBtn.hidden = !isDesktop;
+    downloadJsonBtn.disabled = !hasNotes;
+
     reminderPrompt.hidden = !(isDesktop && hasNotes && shouldShowDesktopDownloadPrompt());
     exportHint.innerHTML = isDesktop
-      ? 'On desktop, use <strong>Download .md Backup</strong> to keep a local copy of these notes outside this browser. You can still copy and paste if you prefer.'
+      ? 'On desktop, use <strong>Download .md Backup</strong> or <strong>Download JSON Backup</strong> to keep a local copy of these notes outside this browser. You can still copy and paste if you prefer.'
       : supportsShare
         ? 'On iPhone, tap <strong>Send to Notes…</strong> to open the share sheet, then choose <strong>Notes</strong> or <strong>New Quick Note</strong>. If you prefer, copy and paste manually.'
         : 'This browser cannot open the native iPhone share sheet from here, so use <strong>Copy to Clipboard</strong> and paste into Notes manually.';
@@ -4872,6 +4941,161 @@
       return;
     }
     showToast(`Downloaded ${filename}`);
+  });
+
+  document.getElementById('downloadJsonBtn').addEventListener('click', () => {
+    const filename = downloadExportJson();
+    if (!filename) {
+      showToast('No notes to export yet');
+      return;
+    }
+    showToast(`Downloaded ${filename}`);
+  });
+
+  // ──────────────────────────────────────────────────────────
+  //  IMPORT MODAL
+  // ──────────────────────────────────────────────────────────
+  function resetImportModal() {
+    document.getElementById('importFileInput').value = '';
+    document.getElementById('importTextarea').value = '';
+    document.getElementById('importStatus').textContent = '';
+    document.getElementById('importStatus').className = 'confirm-status';
+    document.getElementById('importMergeCheckbox').checked = true;
+  }
+
+  function openImportModal() {
+    resetImportModal();
+    openModal('importModal');
+  }
+
+  function closeImportModal() {
+    closeModal('importModal');
+    resetImportModal();
+  }
+
+  document.getElementById('importBtn').addEventListener('click', openImportModal);
+  document.getElementById('closeImportModal').addEventListener('click', closeImportModal);
+  document.getElementById('importModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('importModal')) {
+      closeImportModal();
+    }
+  });
+
+  // Handle file import reading
+  let uploadedJsonData = null;
+  document.getElementById('importFileInput').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) {
+      uploadedJsonData = null;
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      try {
+        uploadedJsonData = JSON.parse(evt.target.result);
+        const status = document.getElementById('importStatus');
+        const count = Object.keys(uploadedJsonData).length;
+        status.textContent = `Valid backup loaded: contains ${count} note${count !== 1 ? 's' : ''}. Tap Confirm Import to complete.`;
+        status.className = 'confirm-status ready';
+      } catch (err) {
+        uploadedJsonData = null;
+        const status = document.getElementById('importStatus');
+        status.textContent = 'Error: Invalid JSON file.';
+        status.className = 'confirm-status error';
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  document.getElementById('confirmImportBtn').addEventListener('click', () => {
+    let rawData = uploadedJsonData;
+    const pastedText = document.getElementById('importTextarea').value.trim();
+
+    // Fallback to pasted text if file is not selected
+    if (!rawData && pastedText) {
+      try {
+        rawData = JSON.parse(pastedText);
+      } catch (err) {
+        const status = document.getElementById('importStatus');
+        status.textContent = 'Error: Pasted text is not valid JSON.';
+        status.className = 'confirm-status error';
+        return;
+      }
+    }
+
+    if (!rawData || typeof rawData !== 'object' || Array.isArray(rawData)) {
+      const status = document.getElementById('importStatus');
+      status.textContent = 'Error: Please upload a valid JSON file or paste a JSON object.';
+      status.className = 'confirm-status error';
+      return;
+    }
+
+    // Basic validation of notes structure
+    const keys = Object.keys(rawData);
+    if (keys.length === 0) {
+      const status = document.getElementById('importStatus');
+      status.textContent = 'Error: The imported file contains 0 notes.';
+      status.className = 'confirm-status error';
+      return;
+    }
+
+    const isValid = keys.every(k => {
+      const item = rawData[k];
+      return item && typeof item === 'object' && ('id' in item) && ('text' in item) && ('type' in item);
+    });
+
+    if (!isValid) {
+      const status = document.getElementById('importStatus');
+      status.textContent = 'Error: Invalid backup structure. Make sure this was exported from a CONNECT26 guide.';
+      status.className = 'confirm-status error';
+      return;
+    }
+
+    const merge = document.getElementById('importMergeCheckbox').checked;
+    const currentNotes = getNotes();
+    let importedCount = 0;
+    let updatedCount = 0;
+
+    if (merge) {
+      // Smart merge: resolve conflicts based on updatedAt timestamps
+      keys.forEach(k => {
+        const imported = rawData[k];
+        const existing = currentNotes[k];
+        if (!existing) {
+          currentNotes[k] = imported;
+          importedCount++;
+        } else {
+          const importedTime = imported.updatedAt || imported.createdAt || 0;
+          const existingTime = existing.updatedAt || existing.createdAt || 0;
+          if (importedTime > existingTime) {
+            currentNotes[k] = imported;
+            updatedCount++;
+          }
+        }
+      });
+      persistNotes(currentNotes);
+    } else {
+      // Total overwrite
+      persistNotes(rawData);
+      importedCount = keys.length;
+    }
+
+    // Refresh UI
+    renderSchedule();
+    renderSpeakers(getSpeakerSearchValue());
+    syncNoteIndicators();
+    syncNoteEditorValues();
+    syncNoteMeta();
+    if (document.getElementById('notesTab').classList.contains('active')) {
+      renderNotesTab();
+    }
+
+    closeImportModal();
+    const actionMsg = merge 
+      ? `Import complete: ${importedCount} new, ${updatedCount} updated`
+      : `Import complete: Overwrote database with ${importedCount} notes`;
+    showToast(actionMsg + ' ✓');
   });
 
   document.getElementById('dismissDownloadPromptBtn').addEventListener('click', () => {
