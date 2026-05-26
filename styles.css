@@ -479,6 +479,142 @@ h3 {
   text-align: center;
 }
 
+.includes-list {
+  margin: 4px 0 0;
+  padding: 14px 18px;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  border-radius: 12px;
+  background: rgba(124, 201, 221, 0.14);
+  color: var(--text);
+  font-size: 0.97rem;
+}
+
+.includes-list li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.includes-list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.55em;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--sky);
+  box-shadow: 0 0 0 3px rgba(124, 201, 221, 0.28);
+}
+
+.callout {
+  margin-top: 4px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(242, 133, 218, 0.55);
+  background: linear-gradient(180deg, #fff5fc 0%, #ffeaf7 100%);
+  text-align: left;
+}
+
+.callout__eyebrow {
+  margin: 0 0 4px;
+  color: var(--red);
+  font-family: "Nothing You Could Do", cursive;
+  font-size: 1.25rem;
+  text-align: left;
+}
+
+.callout__body {
+  margin: 0;
+  color: var(--text);
+  text-align: left;
+  font-size: 0.97rem;
+  line-height: 1.45;
+}
+
+.disclosure {
+  margin-top: 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.disclosure[open] {
+  box-shadow: 0 8px 20px rgba(6, 34, 107, 0.08);
+}
+
+.disclosure summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 12px;
+  list-style: none;
+  font-family: Montserrat, Arial, sans-serif;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.disclosure summary:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+}
+
+.disclosure[open] summary span[aria-hidden="true"] {
+  transform: rotate(90deg);
+}
+
+.disclosure summary span[aria-hidden="true"] {
+  display: inline-block;
+  transition: transform 160ms ease;
+}
+
+.disclosure__body {
+  padding: 0 18px 16px;
+  color: var(--text);
+  text-align: left;
+}
+
+.disclosure__body ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.status-badge {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--sky-light);
+  color: var(--ink);
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+.section--ink .status-badge {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--paper);
+}
+
+.schedule-status {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.98rem;
+}
+
 .strand-grid {
   display: grid;
   gap: 16px;
