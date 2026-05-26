@@ -2,6 +2,34 @@
 
 This document is for any future agent, merge harness, or teammate combining this project with another codebase.
 
+## 2026-05-25 Promote App to Root + Persona Pass
+
+Two changes in one session:
+
+**1. Promoted skeleton to root.**
+The EMW-style app (formerly at `conference-skeleton-export/index.html`) is now the root `index.html`, and is what GitHub Pages serves at `https://lpcode808.github.io/KSEDTECH-26/`. Also copied `sw.js` and `favicon.svg` to root. The old static marketing-site clone (`index.html`, `styles.css`, `script.js`) was overwritten/orphaned. `styles.css` and `script.js` remain in repo but are unused by the new root app.
+
+**2. Persona-driven UX pass.**
+Walked the live app from three personas drawn from `_planning/persona-input.html` (Kumu Mahina, Jordan Park, Maile Reyes), reframed for **at-conference attendee** use rather than pre-registration browsing. Edits applied to `index.html`:
+
+- Fixed QR "Share this app" — was pointing at `https://blogs.ksbe.edu/edtechconference/`, now points at the actual app URL.
+- Removed broken `../index.html` and `../scraped/schedule.html` links from the schedule callout and footer (left over from when the skeleton was a subfolder).
+- Reframed the schedule callout from developer-speak (`First Pass · Built from the current CONNECT26 scrape`) to attendee voice (`Heads up · Schedule preview — times and rooms firming up`).
+- Renamed the per-session toggle from `🤖 Student Summary` to `🤖 Plain-language summary` — the EMW context was a student-attended VC summit; CONNECT26 is an educator audience and the old label was misreading.
+- Cleaned dev-speak from both keynote `description` fields (no more "the preserved mobile scrape identifies …").
+- Cut the stale `$175 registration includes…` line from the footer (registration is closed by event time).
+- Lifted strand info out of `studentSummary` into a real `s.strand` field (catalog rows previously had `studentSummary: "Official CONNECT strand: <X>."` as their only summary content). Strand now renders as a colored chip in the session meta row alongside speaker / location / time. The empty summary toggle is suppressed for catalog rows that had no real summary written.
+- Bumped `sw.js` `CACHE_NAME` to `connect26-guide-v2`.
+
+**Known gaps still open after this pass:**
+
+- **Strand filter UI** is the obvious next move: a pill row above the schedule list (`All / Culture / Transformation / Well-being / Advocacy / Agency`) that hides catalog rows not matching, while always keeping the timed blocks visible for orientation. Strand chips are in place; the filter is the unblocker for "I want to scan only Culture sessions."
+- **Catalog `studentSummary` is empty** for the 55 untimed sessions — the toggle is suppressed by the normalizer, but if real plain-language summaries get written later, they'll surface automatically.
+- **Session stars** aren't a thing (only speaker stars). Maile-persona use case for coordinating a group across strands could use them.
+- **`scripts/static-smoke.mjs` is now obsolete** — it was written for the old static marketing-site clone (skip links, day tabs, registration buttons, highlight images, h1 count). Running it against the app now produces 17 failures, all correct-for-the-wrong-test. Either delete it or rewrite it to assert the app's actual surface (tabs, schedule list, speakers list, notes export, QR modal).
+- **Speaker affiliation badges** (KS / DOE / Independent / Mainland) — Kumu-persona ask from the original persona-input.html, still TODO.
+- The pre-conference `conference-skeleton-export/` folder still exists in the repo as the originating skeleton; it's now redundant with root and could be removed or kept as the export-source for future conferences.
+
 ## 2026-05-06 Skeleton Conversion First Pass
 
 The reusable app in [conference-skeleton-export/index.html](/Users/justinlai/Coding/KSEDTECH-2026/conference-skeleton-export/index.html) has been converted from the EMW sample toward CONNECT26.

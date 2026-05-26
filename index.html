@@ -696,6 +696,22 @@
 
     .meta-icon { font-size: 0.82rem; }
 
+    .meta-strand {
+      padding: 0.18rem 0.55rem 0.2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.01em;
+      background: rgba(255, 247, 235, 0.08);
+      color: var(--text);
+    }
+    .meta-strand .meta-icon { font-size: 0.85rem; }
+    .strand-culture        { background: rgba(175, 205, 83, 0.18); color: #d6e89a; }
+    .strand-transformation { background: rgba(7, 168, 168, 0.20);  color: #7ce0e0; }
+    .strand-well-being     { background: rgba(200, 83, 29, 0.20);  color: #f0a073; }
+    .strand-advocacy       { background: rgba(247, 197, 80, 0.22); color: #ffd97a; }
+    .strand-agency         { background: rgba(146, 110, 255, 0.22); color: #c6b3ff; }
+
     .meta-speaker-list {
       display: inline-flex;
       flex-wrap: wrap;
@@ -2216,11 +2232,11 @@
         <span class="date-label">June 1-3, 2026</span>
         <span class="date-sub">Neal S. Blaisdell Center · Honolulu, Hawaiʻi</span>
       </div>
-      <section class="learn-callout" id="learnCallout" aria-label="Source content status">
+      <section class="learn-callout" id="learnCallout" aria-label="Schedule status">
         <div class="learn-callout-row">
           <button class="learn-callout-inline-link" type="button" aria-controls="learnCalloutBody">
-            <span class="learn-callout-label">First Pass</span>
-            <h2 class="learn-callout-title">Built from the current CONNECT26 scrape</h2>
+            <span class="learn-callout-label">Heads up</span>
+            <h2 class="learn-callout-title">Schedule preview — times and rooms firming up</h2>
           </button>
           <button
             class="learn-callout-toggle"
@@ -2228,30 +2244,25 @@
             type="button"
             aria-expanded="true"
             aria-controls="learnCalloutBody"
-            aria-label="Collapse code guide panel"
+            aria-label="Collapse status panel"
           >
             <span class="learn-callout-toggle-icon" aria-hidden="true">▾</span>
           </button>
         </div>
         <div class="learn-callout-body" id="learnCalloutBody">
           <p class="learn-callout-copy">
-            This version keeps the reusable skeleton app and ports the currently published schedule blocks, featured presenters,
-            registration context, and venue notes. Breakout titles and room assignments are still placeholders until the sessions page is mapped.
+            The day-by-day blocks (keynotes, breakouts, meals) are confirmed. The 55-session catalog below shows what's offered across the strands —
+            specific times and rooms get assigned closer to the conference. Star speakers and take notes now; the picks become real schedules later.
           </p>
           <div class="learn-callout-links">
-            <a class="learn-callout-link primary" href="../index.html">Open preserved mobile scrape</a>
-            <a class="learn-callout-link secondary" href="../scraped/schedule.html">Raw schedule source</a>
-
+            <a class="learn-callout-link primary" href="https://blogs.ksbe.edu/edtechconference/" target="_blank" rel="noopener">Official CONNECT26 site ↗</a>
           </div>
         </div>
       </section>
       <div id="scheduleList"></div>
       <footer class="app-footer">
         <a href="https://blogs.ksbe.edu/edtechconference/" target="_blank" rel="noopener">Official CONNECT26 site</a>
-        &nbsp;·&nbsp;
-        <a href="../index.html">Preserved mobile scrape</a>
         &nbsp;·&nbsp; Kamehameha Schools Kūkulu Kaiāulu
-        <br>$175 registration includes breakfast, lunch, and snacks both conference days.
         <br>
         <button class="qr-share-btn" id="openQrModal" type="button" aria-haspopup="dialog">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -2402,14 +2413,14 @@
         <p class="qr-hint">Point any camera at this code to open the app — no AirDrop needed.</p>
         <div class="qr-frame">
           <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=06226b&bgcolor=ffffff&data=https%3A%2F%2Fblogs.ksbe.edu%2Fedtechconference%2F"
-            alt="QR code for https://blogs.ksbe.edu/edtechconference/"
+            src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=06226b&bgcolor=ffffff&data=https%3A%2F%2Flpcode808.github.io%2FKSEDTECH-26%2F"
+            alt="QR code for https://lpcode808.github.io/KSEDTECH-26/"
             width="200"
             height="200"
             loading="lazy"
           >
         </div>
-        <p class="qr-url">blogs.ksbe.edu/edtechconference</p>
+        <p class="qr-url">lpcode808.github.io/KSEDTECH-26</p>
       </div>
     </div>
   </div>
@@ -2488,7 +2499,7 @@
     "type": "keynote",
     "speaker": "Christa Funk",
     "location": "Neal S. Blaisdell Center",
-    "description": "Day 1 keynote. The preserved mobile scrape identifies Christa Funk as the Day 1 keynote presenter.",
+    "description": "Day 1 keynote with Christa Funk.",
     "studentSummary": "Christa Funk brings a water-centered creative perspective. Listen for how observation, risk, preparation, and story connect to learning design.",
     "subItems": []
   },
@@ -2586,7 +2597,7 @@
     "type": "keynote",
     "speaker": "Kaʻala Souza",
     "location": "Neal S. Blaisdell Center",
-    "description": "Day 2 keynote. The preserved mobile scrape identifies Kaʻala Souza as the Day 2 keynote presenter.",
+    "description": "Day 2 keynote with Kaʻala Souza.",
     "studentSummary": "Kaʻala Souza's work bridges future-of-work thinking, digital access, and Hawaiʻi as a kingdom of learning. Listen for concrete implications for students and educators.",
     "subItems": []
   },
@@ -3432,6 +3443,18 @@
   }
 ];
 
+  // Lift "Official CONNECT strand: X." out of studentSummary into a real
+  // s.strand field so it can render as a meta chip. Clears the empty
+  // summary toggle on catalog entries that had no real summary written.
+  SCHEDULE.forEach(s => {
+    if (!s.studentSummary) return;
+    const m = s.studentSummary.match(/^Official CONNECT strand:\s*(.+?)\.?\s*$/i);
+    if (m) {
+      s.strand = m[1].trim();
+      s.studentSummary = '';
+    }
+  });
+
   const SESSION_RESEARCH = {};
 
   // ──────────────────────────────────────────────────────────
@@ -3899,6 +3922,9 @@
       if (s.speaker && s.type !== 'meal' && s.type !== 'break' && s.type !== 'background') {
         metaParts.push(speakerMetaMarkup(s.speaker));
       }
+      if (s.strand) {
+        metaParts.push(`<span class="meta-item meta-strand strand-${esc(s.strand.toLowerCase())}"><span class="meta-icon">🌺</span>${esc(s.strand)}</span>`);
+      }
       if (s.location) {
         metaParts.push(`<span class="meta-item"><span class="meta-icon">📍</span>${esc(s.location)}</span>`);
       }
@@ -3945,7 +3971,7 @@
               <div class="session-actions">
                 ${s.studentSummary ? `
                   <button class="summary-toggle" data-id="${s.id}" aria-expanded="false">
-                    <span aria-hidden="true">🤖</span> Student Summary
+                    <span aria-hidden="true">🤖</span> Plain-language summary
                     <span class="s-chevron" aria-hidden="true">▾</span>
                   </button>
                   <div class="summary-body" id="summary-${s.id}">
