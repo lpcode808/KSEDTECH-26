@@ -712,6 +712,55 @@
     .strand-advocacy       { background: rgba(247, 197, 80, 0.22); color: #ffd97a; }
     .strand-agency         { background: rgba(146, 110, 255, 0.22); color: #c6b3ff; }
 
+    /* Strand filter pills */
+    .strand-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem 0.25rem;
+    }
+    .strand-filter:empty { display: none; }
+    .strand-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 250, 242, 0.04);
+      color: var(--text-muted);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      min-height: 36px;
+    }
+    .strand-filter-btn:hover { color: var(--text); }
+    .strand-filter-btn.is-active {
+      background: rgba(124, 201, 221, 0.18);
+      border-color: var(--border-active);
+      color: var(--text);
+    }
+    .strand-filter-count {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.05rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(255, 250, 242, 0.1);
+      color: var(--text-muted);
+    }
+    .strand-filter-btn.is-active .strand-filter-count {
+      background: rgba(255, 250, 242, 0.18);
+      color: var(--text);
+    }
+    .strand-empty-msg {
+      padding: 1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
     .meta-speaker-list {
       display: inline-flex;
       flex-wrap: wrap;
@@ -2259,6 +2308,7 @@
           </div>
         </div>
       </section>
+      <div id="strandFilter" class="strand-filter" role="toolbar" aria-label="Filter sessions by strand"></div>
       <div id="scheduleList"></div>
       <footer class="app-footer">
         <a href="https://blogs.ksbe.edu/edtechconference/" target="_blank" rel="noopener">Official CONNECT26 site</a>
@@ -3455,6 +3505,11 @@
     }
   });
 
+  // Strand filter state. 'all' = no filter; otherwise the strand name to keep.
+  // Timed blocks (entries without a strand) always pass the filter so the day
+  // shape stays visible.
+  let currentStrandFilter = 'all';
+
   const SESSION_RESEARCH = {};
 
   // ──────────────────────────────────────────────────────────
@@ -3909,9 +3964,49 @@
     return `<span class="session-speaker">${parts.map(esc).join(' · ')}</span>`;
   }
 
+  function renderStrandFilter() {
+    const root = document.getElementById('strandFilter');
+    if (!root) return;
+    const counts = {};
+    SCHEDULE.forEach(s => {
+      if (s.strand) counts[s.strand] = (counts[s.strand] || 0) + 1;
+    });
+    const strands = Object.keys(counts).sort();
+    if (!strands.length) {
+      root.innerHTML = '';
+      return;
+    }
+    const totalCatalog = strands.reduce((acc, k) => acc + counts[k], 0);
+    const allActive = currentStrandFilter === 'all';
+    const allBtn = `<button type="button" class="strand-filter-btn ${allActive ? 'is-active' : ''}" data-strand="all" aria-pressed="${allActive}">All <span class="strand-filter-count">${totalCatalog}</span></button>`;
+    const strandBtns = strands.map(name => {
+      const slug = name.toLowerCase();
+      const isActive = currentStrandFilter === name;
+      return `<button type="button" class="strand-filter-btn strand-${esc(slug)} ${isActive ? 'is-active' : ''}" data-strand="${esc(name)}" aria-pressed="${isActive}">${esc(name)} <span class="strand-filter-count">${counts[name]}</span></button>`;
+    }).join('');
+    root.innerHTML = allBtn + strandBtns;
+    root.querySelectorAll('.strand-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => setStrandFilter(btn.dataset.strand));
+    });
+  }
+
+  function setStrandFilter(strand) {
+    if (currentStrandFilter === strand) return;
+    currentStrandFilter = strand;
+    renderStrandFilter();
+    renderSchedule();
+  }
+
   function renderSchedule() {
     const notes = getNotes();
-    const html = SCHEDULE.map(s => {
+    // Filter logic: 'all' shows everything. Any strand filter keeps:
+    //   (a) entries with a matching strand, AND
+    //   (b) entries without a strand at all (keynotes, meals, breakouts) so the
+    //       day shape stays legible.
+    const items = currentStrandFilter === 'all'
+      ? SCHEDULE
+      : SCHEDULE.filter(s => !s.strand || s.strand === currentStrandFilter);
+    const html = items.map(s => {
       const note = notes[noteKey(NOTE_TYPES.SESSION, s.id)];
       const hasNote = !!note;
       const hasSubs = s.subItems && s.subItems.length > 0;
@@ -5937,6 +6032,7 @@
   // ──────────────────────────────────────────────────────────
   //  INIT
   // ──────────────────────────────────────────────────────────
+  renderStrandFilter();
   renderSchedule();
   updateDownloadReminderTestState();
   setLearnCalloutCollapsed(false);
