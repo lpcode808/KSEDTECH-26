@@ -1908,12 +1908,14 @@
       margin: 0;
     }
 
-    /* ── SPEAKERS TAB ── */
-    .speakers-search-wrap {
+    /* ── SEARCH GENERALIZATION ── */
+    .speakers-search-wrap,
+    .schedule-search-wrap {
       padding: 0.75rem 0.75rem 0.5rem;
     }
 
-    .speakers-search {
+    .speakers-search,
+    .schedule-search {
       width: 100%;
       background: var(--surface);
       border: 1px solid var(--border);
@@ -1928,9 +1930,12 @@
       background-repeat: no-repeat;
       background-position: 0.75rem center;
     }
-    .speakers-search:focus { border-color: var(--teal); }
-    .speakers-search::placeholder { color: var(--text-dim); }
+    .speakers-search:focus,
+    .schedule-search:focus { border-color: var(--teal); }
+    .speakers-search::placeholder,
+    .schedule-search::placeholder { color: var(--text-dim); }
 
+    /* ── SPEAKERS TAB ── */
     .speakers-toolbar {
       display: flex;
       align-items: center;
@@ -2308,6 +2313,9 @@
           </div>
         </div>
       </section>
+      <div class="schedule-search-wrap">
+        <input class="schedule-search" type="search" id="scheduleSearch" placeholder="Search sessions, speakers, strands, rooms…" aria-label="Search schedule">
+      </div>
       <div id="strandFilter" class="strand-filter" role="toolbar" aria-label="Filter sessions by strand"></div>
       <div id="scheduleList"></div>
       <footer class="app-footer">
@@ -3999,13 +4007,26 @@
 
   function renderSchedule() {
     const notes = getNotes();
-    // Filter logic: 'all' shows everything. Any strand filter keeps:
-    //   (a) entries with a matching strand, AND
-    //   (b) entries without a strand at all (keynotes, meals, breakouts) so the
-    //       day shape stays legible.
-    const items = currentStrandFilter === 'all'
+    const q = (document.getElementById('scheduleSearch')?.value || '').toLowerCase().trim();
+
+    // Filter logic:
+    // 1. If a strand is active, filter rows matching the strand OR having no strand at all (blocks)
+    // 2. If a search query exists, further filter sessions whose title, description, speaker, strand, or location matches.
+    let items = currentStrandFilter === 'all'
       ? SCHEDULE
       : SCHEDULE.filter(s => !s.strand || s.strand === currentStrandFilter);
+
+    if (q) {
+      items = items.filter(s => {
+        const matchesTitle = s.title && s.title.toLowerCase().includes(q);
+        const matchesDesc = s.description && s.description.toLowerCase().includes(q);
+        const matchesSpeaker = s.speaker && s.speaker.toLowerCase().includes(q);
+        const matchesLocation = s.location && s.location.toLowerCase().includes(q);
+        const matchesStrand = s.strand && s.strand.toLowerCase().includes(q);
+        return matchesTitle || matchesDesc || matchesSpeaker || matchesLocation || matchesStrand;
+      });
+    }
+
     const html = items.map(s => {
       const note = notes[noteKey(NOTE_TYPES.SESSION, s.id)];
       const hasNote = !!note;
@@ -5808,6 +5829,9 @@
   // Search
   document.getElementById('speakerSearch').addEventListener('input', e => {
     renderSpeakers(e.target.value);
+  });
+  document.getElementById('scheduleSearch').addEventListener('input', () => {
+    renderSchedule();
   });
   document.getElementById('showStarredFirstBtn').addEventListener('click', () => {
     if (getStarredSpeakers().size === 0) return;
