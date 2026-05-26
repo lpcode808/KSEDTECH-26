@@ -1,0 +1,10 @@
+{
+  "name": "connect26-mobile-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --check script.js && node scripts/static-smoke.mjs",
+    "serve": "python3 -m http.server 4173"
+  }
+}

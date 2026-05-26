@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>EMW 2026 - Code Guide</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #001329;
+      --bg-soft: #021b35;
+      --surface: rgba(0, 32, 64, 0.9);
+      --surface-strong: #0a2a4a;
+      --surface-muted: rgba(10, 42, 74, 0.72);
+      --text: #fff7eb;
+      --text-muted: rgba(255, 247, 235, 0.72);
+      --text-dim: rgba(255, 247, 235, 0.5);
+      --border: rgba(255, 247, 235, 0.1);
+      --border-strong: rgba(7, 168, 168, 0.28);
+      --teal: #07a8a8;
+      --teal-soft: rgba(7, 168, 168, 0.12);
+      --orange: #c8531d;
+      --orange-soft: rgba(200, 83, 29, 0.14);
+      --lime: #afcd53;
+      --lime-soft: rgba(175, 205, 83, 0.14);
+      --shadow: 0 24px 50px rgba(0, 0, 0, 0.2);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Sen', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(7, 168, 168, 0.2), transparent 32%),
+        radial-gradient(circle at top right, rgba(175, 205, 83, 0.12), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding: calc(env(safe-area-inset-top, 0px) + 0.9rem) 1rem 0.9rem;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(0, 19, 41, 0.76);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .topbar-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.72rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(255, 247, 235, 0.05);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .topbar-link.primary {
+      background: var(--teal);
+      color: var(--bg);
+      border-color: transparent;
+    }
+
+    .page {
+      width: min(100%, 1040px);
+      margin: 0 auto;
+      padding: 1rem 1rem calc(4rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lime);
+      font-family: var(--font-display);
+      margin-bottom: 0.65rem;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 1.35rem;
+      background:
+        linear-gradient(135deg, rgba(7, 168, 168, 0.18), rgba(0, 53, 113, 0.4)),
+        var(--surface);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -28% auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(175, 205, 83, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero h1,
+    .panel h2 {
+      font-family: var(--font-display);
+      letter-spacing: -0.03em;
+      line-height: 1.02;
+      color: var(--text);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 8vw, 4.2rem);
+      max-width: 10ch;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-copy,
+    .panel-copy {
+      font-size: 0.96rem;
+      line-height: 1.72;
+      color: var(--text-muted);
+      max-width: 68ch;
+    }
+
+    .hero-actions,
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.78rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.83rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .action-link.primary {
+      background: var(--teal);
+      color: var(--bg);
+    }
+
+    .action-link.secondary {
+      background: rgba(255, 247, 235, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 1.15rem;
+    }
+
+    .stat-card {
+      padding: 0.85rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 247, 235, 0.08);
+      background: rgba(0, 19, 41, 0.28);
+    }
+
+    .stat-value {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.76rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    .intent-panel,
+    .audience-panel {
+      position: relative;
+      z-index: 1;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(0, 19, 41, 0.32);
+      border: 1px solid rgba(255, 247, 235, 0.08);
+    }
+
+    .intent-title,
+    .audience-title {
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .intent-copy,
+    .audience-copy {
+      font-size: 0.82rem;
+      line-height: 1.66;
+      color: var(--text-muted);
+    }
+
+    .intent-toggle,
+    .audience-toggle {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.8rem;
+    }
+
+    .intent-btn,
+    .mode-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.7rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 247, 235, 0.05);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .intent-btn.active,
+    .mode-btn.active {
+      background: var(--teal);
+      color: var(--bg);
+      border-color: transparent;
+    }
+
+    .intent-note,
+    .mode-note {
+      margin-top: 0.65rem;
+      font-size: 0.74rem;
+      line-height: 1.55;
+      color: var(--text-dim);
+    }
+
+    .chip-nav {
+      display: flex;
+      gap: 0.55rem;
+      overflow-x: auto;
+      padding: 0.2rem;
+      scrollbar-width: none;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      margin-bottom: 1rem;
+    }
+
+    .chip-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0.66rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 247, 235, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .panel h2 {
+      font-size: clamp(1.45rem, 5.5vw, 2.3rem);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-stack > * + * {
+      margin-top: 0.85rem;
+    }
+
+    .flow-grid,
+    .map-grid,
+    .feature-grid,
+    .scratch-grid,
+    .experiment-grid {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .flow-grid,
+    .feature-grid,
+    .scratch-grid,
+    .experiment-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .map-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .info-card,
+    .experiment-card,
+    .faq-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface-muted);
+      padding: 1rem;
+    }
+
+    .info-card h3,
+    .experiment-card h3,
+    .faq-card h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      line-height: 1.15;
+      margin-bottom: 0.42rem;
+      color: var(--text);
+    }
+
+    .info-card p,
+    .experiment-card p,
+    .faq-copy,
+    .list-text {
+      font-size: 0.84rem;
+      line-height: 1.68;
+      color: var(--text-muted);
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--bg);
+      font-family: var(--font-display);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+
+    .callout {
+      margin-top: 1rem;
+      padding: 0.95rem 1rem;
+      border-radius: 16px;
+      background: var(--lime-soft);
+      border: 1px solid rgba(175, 205, 83, 0.2);
+      color: var(--text);
+    }
+
+    .callout strong {
+      color: var(--lime);
+    }
+
+    .intent-only {
+      display: none;
+    }
+
+    .mode-extra {
+      display: none;
+      margin-top: 0.7rem;
+      padding: 0.78rem 0.85rem;
+      border-radius: 14px;
+      background: rgba(7, 168, 168, 0.08);
+      border: 1px solid rgba(7, 168, 168, 0.2);
+      font-size: 0.78rem;
+      line-height: 1.62;
+      color: var(--text-muted);
+    }
+
+    body[data-intent="viewing"] .audience-panel,
+    body[data-intent="viewing"] .mode-extra,
+    body[data-intent="viewing"] .mode-only {
+      display: none;
+    }
+
+    body[data-intent="viewing"] .intent-only[data-intent="viewing"],
+    body[data-intent="tinkering"] .intent-only[data-intent="tinkering"] {
+      display: block;
+    }
+
+    body[data-intent="viewing"] .chip.intent-only[data-intent="viewing"],
+    body[data-intent="viewing"] .action-link.intent-only[data-intent="viewing"],
+    body[data-intent="tinkering"] .chip.intent-only[data-intent="tinkering"],
+    body[data-intent="tinkering"] .action-link.intent-only[data-intent="tinkering"] {
+      display: inline-flex;
+    }
+
+    body[data-intent="tinkering"][data-mode="coder"] .mode-extra {
+      display: block;
+    }
+
+    body[data-intent="tinkering"][data-mode="beginner"] .mode-only[data-audience="coder"] {
+      display: none;
+    }
+
+    .search-list,
+    .plain-list {
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 1rem;
+    }
+
+    .search-token {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+      padding: 0.62rem 0.8rem;
+      border-radius: 12px;
+      background: rgba(0, 19, 41, 0.35);
+      border: 1px solid var(--border);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.76rem;
+      color: #d8fff7;
+      overflow-wrap: anywhere;
+    }
+
+    .code-grid {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .code-card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(0, 19, 41, 0.45);
+      overflow: hidden;
+    }
+
+    .code-card-header {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 247, 235, 0.04);
+    }
+
+    .code-card-header h3 {
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      margin-bottom: 0.22rem;
+    }
+
+    .code-card-header p {
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 1rem;
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: #f6f0e4;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    code {
+      font-family: inherit;
+    }
+
+    .inline-code {
+      display: inline;
+      padding: 0.15rem 0.35rem;
+      border-radius: 6px;
+      background: rgba(255, 247, 235, 0.07);
+      border: 1px solid rgba(255, 247, 235, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+    }
+
+    .comparison {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .comparison-row {
+      display: grid;
+      gap: 0.55rem;
+      padding: 0.85rem;
+      border-radius: 16px;
+      background: rgba(255, 247, 235, 0.04);
+      border: 1px solid var(--border);
+    }
+
+    .comparison-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-family: var(--font-display);
+    }
+
+    .comparison-value {
+      font-size: 0.84rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .concept-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.22rem 0.58rem;
+      border-radius: 999px;
+      background: var(--teal-soft);
+      border: 1px solid rgba(7, 168, 168, 0.18);
+      color: var(--teal);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+
+    .concept-link:hover,
+    .concept-link:active {
+      background: rgba(7, 168, 168, 0.22);
+    }
+
+    .concept-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.7rem;
+    }
+
+    .mini-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.35rem;
+      font-family: var(--font-display);
+    }
+
+    .experiment-card .plain-list {
+      margin-top: 0.6rem;
+    }
+
+    details {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255, 247, 235, 0.04);
+      padding: 0.95rem 1rem;
+    }
+
+    details + details {
+      margin-top: 0.75rem;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-copy {
+      margin-top: 0.7rem;
+    }
+
+    .footer-note {
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 760px) {
+      .page {
+        padding-top: 1.4rem;
+      }
+
+      .panel {
+        padding: 1.4rem;
+      }
+
+      .hero {
+        padding: 1.65rem;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .code-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .comparison {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body data-intent="viewing" data-mode="beginner">
+  <header class="topbar">
+    <div class="topbar-group">
+      <a class="topbar-link primary" href="index.html">Back to the live app</a>
+    </div>
+    <a class="topbar-link" href="https://emwhawaii.com/2026" target="_blank" rel="noopener">Official EMW site</a>
+  </header>
+
+  <main class="page">
+    <section class="panel hero">
+      <p class="eyebrow">Start Here</p>
+      <h1>If you can scroll Instagram or YouTube, you already get part of this site</h1>
+      <p class="hero-copy">
+        This page can do two jobs. If you are at the conference just exploring, it can explain what you are looking at in plain language.
+        If you want to open the file later and poke at it, it can also guide you through safe beginner edits.
+      </p>
+      <div class="hero-actions">
+        <a class="action-link primary" href="#start-here">See the simple version</a>
+        <a class="action-link secondary intent-only" data-intent="viewing" href="#observe">What to notice</a>
+        <a class="action-link secondary intent-only" data-intent="tinkering" href="https://github.com/lpcode808/EMW2026/blob/main/README.md" target="_blank" rel="noopener">Open the repo README</a>
+      </div>
+      <div class="hero-stats" aria-label="App facts">
+        <div class="stat-card">
+          <span class="stat-value">1 file</span>
+          <span class="stat-label">The whole app lives in a single HTML file — styles, behavior, and data included</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">3 tabs</span>
+          <span class="stat-label">Schedule, Speakers, and Notes — like sections of any app you already use</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">4 jobs</span>
+          <span class="stat-label">Store info, draw the page, react to taps, and remember notes — that's the whole engine</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">0 setup</span>
+          <span class="stat-label">No accounts, no installs, works offline at the venue once loaded</span>
+        </div>
+      </div>
+      <div class="intent-panel" aria-label="Choose how you want to use this guide">
+        <div class="intent-title">How are you using this page?</div>
+        <p class="intent-copy">
+          Most conference visitors will want the explainer path. Switch to tinkering only if you want the guide to talk more like a build-along and point you toward safe edits.
+        </p>
+        <div class="intent-toggle" role="group" aria-label="Guide intent">
+          <button class="intent-btn active" type="button" data-intent="viewing" aria-pressed="true">Exploring the site</button>
+          <button class="intent-btn" type="button" data-intent="tinkering" aria-pressed="false">Trying the code</button>
+        </div>
+        <p class="intent-note">The default is the conference-friendly explainer view. Tinkering mode unlocks edit ideas and the coding-depth switch below.</p>
+      </div>
+      <div class="audience-panel" aria-label="Choose your guide mode">
+        <div class="audience-title">How much coding language should this use?</div>
+        <p class="audience-copy">
+          Since you chose the tinkering path, you can decide how much coding vocabulary you want. The default still keeps things plain and beginner-friendly.
+        </p>
+        <div class="audience-toggle" role="group" aria-label="Audience mode">
+          <button class="mode-btn active" type="button" data-mode="beginner" aria-pressed="true">New to coding</button>
+          <button class="mode-btn" type="button" data-mode="coder" aria-pressed="false">Done a little coding</button>
+        </div>
+        <p class="mode-note">This second switch only changes the amount of technical language. It does not change the overall structure of the guide.</p>
+      </div>
+    </section>
+
+    <nav class="chip-nav" aria-label="Section links">
+      <a class="chip" href="#start-here">Feels familiar</a>
+      <a class="chip" href="#learning-loop">How to explore</a>
+      <a class="chip intent-only" data-intent="viewing" href="#observe">What to notice</a>
+      <a class="chip" href="#mental-model">Big idea</a>
+      <a class="chip" href="#map">Main files</a>
+      <a class="chip" href="#html">Page outline</a>
+      <a class="chip" href="#css">Look and feel</a>
+      <a class="chip" href="#js">What happens on tap</a>
+      <a class="chip" href="#storage">Saved notes</a>
+      <a class="chip" href="#offline">Offline</a>
+      <a class="chip mode-only intent-only" data-audience="coder" data-intent="tinkering" href="#scratch">If you've coded</a>
+      <a class="chip intent-only" data-intent="tinkering" href="#experiments">Experiments</a>
+      <a class="chip" href="#questions">Questions</a>
+    </nav>
+
+    <section class="panel section-stack" id="start-here">
+      <p class="eyebrow">Familiar First</p>
+      <h2>This site behaves like other apps you already know</h2>
+      <p class="panel-copy">
+        When you open Instagram, YouTube, or TikTok, you already know what to do: scroll, look for something interesting, tap it,
+        and open more detail. This conference site uses the same habits. It just swaps videos and posts for sessions, speakers, and notes.
+      </p>
+      <div class="flow-grid">
+        <article class="info-card">
+          <div class="step-badge">1</div>
+          <h3>Scroll a list</h3>
+          <p>The schedule is a stack of cards, like a feed. Each card is one session instead of one video or post.</p>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">2</div>
+          <h3>Tap for more</h3>
+          <p>Tapping a session opens extra details, the same way apps often open more information when you press into something.</p>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">3</div>
+          <h3>Switch views</h3>
+          <p>The tabs at the top work like jumping between sections of an app: schedule, people, and your own notes.</p>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">4</div>
+          <h3>Keep your place</h3>
+          <p>When you write a note, the browser remembers it on that same device so it is still there after a refresh.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="learning-loop">
+      <p class="eyebrow">How To Explore</p>
+      <h2>Look, guess, change one thing, then check again</h2>
+      <p class="panel-copy">
+        You do not need to understand every line all at once. A better approach is to explore the page the same way you would explore a new app:
+        notice a pattern, make a guess, try a small change, and see what happened.
+      </p>
+      <div class="flow-grid">
+        <article class="info-card">
+          <div class="step-badge">1</div>
+          <h3>Notice a clue</h3>
+          <p>Pick something simple first: a tab name, a button label, a color, or a heading you can already see on the page.</p>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">2</div>
+          <h3>Search for it</h3>
+          <p>Use find-in-page to look for the same word in the file so you can see where that part of the page comes from.</p>
+          <div class="mode-extra">If you already know a little coding, good search words here include <span class="inline-code">renderSchedule</span>, <span class="inline-code">activateTab</span>, and <span class="inline-code">saveNote</span>.</div>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">3</div>
+          <h3>Make one guess</h3>
+          <p class="intent-only" data-intent="viewing">Guess why that part of the page exists or what job it is doing for the attendee.</p>
+          <p class="intent-only" data-intent="tinkering">Edit one small thing at a time so you can tell exactly which change caused the result you see.</p>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">4</div>
+          <h3>Check yourself</h3>
+          <p class="intent-only" data-intent="viewing">Open the live app again and see whether you can spot the same pattern somewhere else on the page.</p>
+          <p class="intent-only" data-intent="tinkering">Reload the page, notice what changed, and try to explain it back in your own words before moving on.</p>
+        </article>
+      </div>
+      <div class="callout intent-only" data-intent="viewing">
+        <strong>Tip:</strong> even without editing, noticing repeated patterns and guessing why they were chosen is already real builder thinking.
+      </div>
+      <div class="callout intent-only" data-intent="tinkering">
+        <strong>Tip:</strong> the best beginner edits are usually visible ones like text, color, spacing, and button labels because the cause and effect are easy to spot.
+      </div>
+    </section>
+
+    <section class="panel section-stack intent-only" data-intent="viewing" id="observe">
+      <p class="eyebrow">While You're Browsing</p>
+      <h2>What to notice if you are not editing anything</h2>
+      <p class="panel-copy">
+        Even without changing the code, you can still read the app like a builder. The trick is to notice the repeated patterns and ask what job each part is doing.
+      </p>
+      <div class="flow-grid">
+        <article class="info-card">
+          <div class="step-badge">1</div>
+          <h3>The feed feeling</h3>
+          <p>The schedule works like a feed. It repeats one card pattern over and over, which makes the page easier to scan quickly.</p>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">2</div>
+          <h3>The remote at the top</h3>
+          <p>The tab bar acts like a remote control. It changes your view without sending you to a totally different website.</p>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">3</div>
+          <h3>The browser's memory shelf</h3>
+          <p>Your notes feel personal because the browser keeps them on this same device, a bit like a draft that stays in your own notebook.</p>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">4</div>
+          <h3>The conference shortcut layer</h3>
+          <p>Buttons, chips, and jump links shorten the path to what you need, which matters when people are standing in hallways between sessions.</p>
+        </article>
+      </div>
+      <div class="callout">
+        <strong>Good conference question:</strong> if you had to explain one part of the app to a friend in ten seconds, which part feels easiest to understand and why?
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="mental-model">
+      <p class="eyebrow">Big Idea</p>
+      <h2>The site runs on four simple jobs</h2>
+      <p class="panel-copy">
+        Under the hood, the site is doing four jobs over and over: keep the conference information somewhere, show it on screen,
+        react when someone taps something, and remember notes on the same device.
+      </p>
+      <div class="flow-grid">
+        <article class="info-card">
+          <div class="step-badge">1</div>
+          <h3>Keep the information</h3>
+          <p>The conference sessions and speaker details are written down in the file so the page can use them later.</p>
+          <div class="mode-extra">In coding terms, those lists live in JavaScript arrays called <span class="inline-code">SCHEDULE</span> and <span class="inline-code">SPEAKERS</span>.</div>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">2</div>
+          <h3>Draw the page</h3>
+          <p>The site takes that written-down information and turns it into the cards and sections you can actually see.</p>
+          <div class="mode-extra">That step is often called rendering. In this project, helpers like <span class="inline-code">renderSchedule()</span> do that work.</div>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">3</div>
+          <h3>React to taps</h3>
+          <p>When someone taps a tab, opens a session, or saves a note, the page notices and updates what is on screen.</p>
+          <div class="mode-extra">The coding phrase for this is event handling. The page listens for clicks, then runs a function.</div>
+        </article>
+        <article class="info-card">
+          <div class="step-badge">4</div>
+          <h3>Remember notes</h3>
+          <p>The browser keeps your notes on that same phone or computer, so they are still there after a refresh.</p>
+          <div class="mode-extra">This project uses <span class="inline-code">localStorage</span>, which is the browser's built-in little storage shelf.</div>
+        </article>
+      </div>
+      <div class="concept-links">
+        <a class="concept-link" href="https://g.ai/?q=how+does+a+web+page+render+content+from+data+simple+explanation" target="_blank" rel="noopener">Rendering from data ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=what+is+client+side+storage+in+web+browsers" target="_blank" rel="noopener">Client-side storage ↗</a>
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="map">
+      <p class="eyebrow">Main Files</p>
+      <h2>What matters most in this repo</h2>
+      <p class="panel-copy">
+        This project is small on purpose. That makes it easier to teach from, easier to edit quickly, and less overwhelming for first-time readers.
+      </p>
+      <div class="map-grid">
+        <article class="info-card">
+          <h3><span class="inline-code">index.html</span></h3>
+          <p>This is the live conference app. Most of the action is here: the page pieces, the visual styling, the tap behavior, and the conference information.</p>
+          <div class="search-list mode-extra">
+            <span class="search-token">const SCHEDULE = [</span>
+            <span class="search-token">function renderSchedule()</span>
+            <span class="search-token">function renderSpeakers(filter = '')</span>
+            <span class="search-token">function saveNote(type, entityId, text)</span>
+            <span class="search-token">renderSchedule();</span>
+          </div>
+        </article>
+        <article class="info-card">
+          <h3><span class="inline-code">code-guide.html</span></h3>
+          <p>This is the explainer page you are reading now. It is separate so curious learners can explore without getting in the way of the live conference view.</p>
+          <div class="plain-list">
+            <p class="list-text">Uses the same visual language as the app.</p>
+            <p class="list-text">Optimized for mobile reading and quick scrolling.</p>
+            <p class="list-text">Explains the real site instead of a fake teaching example.</p>
+          </div>
+        </article>
+        <article class="info-card">
+          <h3><span class="inline-code">sw.js</span></h3>
+          <p>A small service worker file that saves the app to your browser so it works offline at the conference venue, even without WiFi.</p>
+        </article>
+        <article class="info-card">
+          <h3>Docs</h3>
+          <p><span class="inline-code">README.md</span> tells the full story of how the project was built, and <span class="inline-code">CLAUDE.md</span> is extra guidance for future coding helpers.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="html">
+      <p class="eyebrow">1. Page Outline</p>
+      <h2>HTML is the page outline</h2>
+      <p class="panel-copy">
+        HTML is the part that names the big pieces of the page: the top bar, the main area, the tabs, the pop-up, and the little status message.
+        It helps the browser know what belongs where.
+      </p>
+      <div class="callout intent-only" data-intent="viewing">
+        <strong>Analogy:</strong> HTML is like the labeled rooms and signs on a venue map. It tells you what each part of the place is supposed to be.
+      </div>
+      <div class="mode-extra">
+        If you already know a little coding, HTML is the structure layer. Tags such as <span class="inline-code">&lt;header&gt;</span>,
+        <span class="inline-code">&lt;main&gt;</span>, and <span class="inline-code">&lt;section&gt;</span> are often called semantic HTML.
+      </div>
+      <div class="code-grid">
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>The main page shape</h3>
+            <p>This is a shortened version of the real layout in <span class="inline-code">index.html</span>.</p>
+          </div>
+          <pre><code>&lt;header class="app-header"&gt;...&lt;/header&gt;
+&lt;main&gt;
+  &lt;section id="scheduleTab" class="tab-content active"&gt;&lt;/section&gt;
+  &lt;section id="speakersTab" class="tab-content"&gt;&lt;/section&gt;
+  &lt;section id="notesTab" class="tab-content"&gt;
+    &lt;div id="notesComposer"&gt;&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;div class="modal-overlay hidden" id="exportModal"&gt;...&lt;/div&gt;
+&lt;div class="toast" id="toast"&gt;&lt;/div&gt;</code></pre>
+        </article>
+        <article class="info-card">
+          <h3>Why it matters</h3>
+          <p>These named pieces give the rest of the page something to work with later.</p>
+          <div class="plain-list">
+            <p class="list-text">The header stays visible while you scroll.</p>
+            <p class="list-text">The tabs point to different sections of the page.</p>
+            <p class="list-text">The pop-up and little message bubble already exist, so the page can simply show or hide them.</p>
+          </div>
+          <div class="mode-extra">In coder language, JavaScript later looks up these spots by ID or class name and updates them.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="css">
+      <p class="eyebrow">2. Look And Feel</p>
+      <h2>CSS controls the look and feel</h2>
+      <p class="panel-copy">
+        CSS decides how the site looks and feels. It picks the colors, spacing, fonts, button sizes, and the smooth open-close motion that makes the page feel polished on a phone.
+      </p>
+      <div class="callout intent-only" data-intent="viewing">
+        <strong>Analogy:</strong> CSS is the paint, lighting, spacing, and signage system. The building is the same building, but it feels very different depending on these choices.
+      </div>
+      <div class="code-grid">
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>Shared color names</h3>
+            <p>The page gives important colors names so they can be reused in many places.</p>
+          </div>
+          <pre><code>:root {
+  --bg: #001329;
+  --surface: #002040;
+  --teal: #07a8a8;
+  --orange: #c8531d;
+  --lime: #afcd53;
+  --text: #fff7eb;
+  --font-display: 'Sen', sans-serif;
+}</code></pre>
+        </article>
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>Open-close motion</h3>
+            <p>This is part of what makes each session row smoothly expand instead of popping open suddenly.</p>
+          </div>
+          <pre><code>.session-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}</code></pre>
+        </article>
+      </div>
+      <div class="feature-grid">
+        <article class="info-card">
+          <h3>Mobile-first spacing</h3>
+          <p>The layout starts with phones in mind, then opens up a bit more on larger screens.</p>
+        </article>
+        <article class="info-card">
+          <h3>Safe tap targets</h3>
+          <p>Buttons are large enough to tap comfortably when students are standing, walking, or moving between sessions.</p>
+        </article>
+        <article class="info-card">
+          <h3>Reusable colors</h3>
+          <p>Changing one shared color can update many parts of the page at once, which is much easier than editing every button one by one.</p>
+          <div class="mode-extra">Those shared named values are often called tokens or CSS custom properties.</div>
+        </article>
+      </div>
+      <div class="concept-links">
+        <a class="concept-link" href="https://g.ai/?q=what+are+CSS+custom+properties+and+how+do+they+work" target="_blank" rel="noopener">CSS custom properties ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=how+do+CSS+transitions+and+animations+work+for+beginners" target="_blank" rel="noopener">CSS transitions ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=what+does+mobile+first+design+mean+in+web+development" target="_blank" rel="noopener">Mobile-first design ↗</a>
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="js">
+      <p class="eyebrow">3. What Happens On Tap</p>
+      <h2>JavaScript handles the actions</h2>
+      <p class="panel-copy">
+        JavaScript is the part that notices what a person did and responds. It opens a session, switches tabs, saves a note,
+        or shows a message after a button press.
+      </p>
+      <div class="callout intent-only" data-intent="viewing">
+        <strong>Analogy:</strong> JavaScript is like the stage manager or usher. It notices what just happened and helps the right next thing happen on time.
+      </div>
+      <div class="code-grid">
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>Make the session list</h3>
+            <p>The page builds the schedule from the saved conference information.</p>
+          </div>
+          <pre><code>function renderSchedule() {
+  const html = SCHEDULE.map(session =&gt; `...`).join('');
+  document.getElementById('scheduleList').innerHTML = html;
+  attachScheduleEvents();
+}</code></pre>
+        </article>
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>Notice a tap</h3>
+            <p>After the buttons exist, the page tells them what to do when someone presses them.</p>
+          </div>
+          <pre><code>root.querySelectorAll('.session-trigger').forEach(btn =&gt; {
+  btn.addEventListener('click', () =&gt; toggleSession(btn.dataset.id));
+});</code></pre>
+        </article>
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>Switch tabs</h3>
+            <p>One small helper keeps the top tabs and the visible section in sync.</p>
+          </div>
+          <pre><code>function activateTab(target) {
+  document.querySelectorAll('.tab-btn').forEach(btn =&gt; {
+    const isActive = btn.dataset.tab === target;
+    btn.classList.toggle('active', isActive);
+  });
+}</code></pre>
+        </article>
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>Keep text safe</h3>
+            <p>This helper makes sure user-facing text is treated like text, not like page instructions.</p>
+          </div>
+          <pre><code>function esc(str) {
+  return str
+    .replace(/&amp;/g, '&amp;amp;')
+    .replace(/&lt;/g, '&amp;lt;')
+    .replace(/&gt;/g, '&amp;gt;')
+    .replace(/"/g, '&amp;quot;');
+}</code></pre>
+        </article>
+      </div>
+      <div class="callout">
+        <strong>Important idea:</strong> the page usually creates something first, then adds behavior to it second. In plain English: make the buttons, then teach the buttons.
+      </div>
+      <div class="mode-extra">
+        If you have coded before, the main ideas here are rendering, event listeners, small helper functions, and keeping text escaped before it is inserted into HTML.
+      </div>
+      <div class="concept-links">
+        <a class="concept-link" href="https://g.ai/?q=what+are+JavaScript+event+listeners+simple+explanation" target="_blank" rel="noopener">Event listeners ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=what+is+the+DOM+in+web+development+for+beginners" target="_blank" rel="noopener">The DOM ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=what+is+XSS+cross+site+scripting+and+why+escape+HTML" target="_blank" rel="noopener">Why escape text? ↗</a>
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="storage">
+      <p class="eyebrow">4. Saved data</p>
+      <h2>Why notes stay on this device</h2>
+      <p class="panel-copy">
+        The site keeps notes in the browser instead of sending them to an account or a server. That keeps the setup simple for a conference,
+        but it also means your notes stay with the same browser on the same device.
+      </p>
+      <div class="callout intent-only" data-intent="viewing">
+        <strong>Analogy:</strong> think of this like a small locker inside this browser. It is fast and convenient, but it is attached to this one place.
+      </div>
+      <div class="code-grid">
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>One place for notes</h3>
+            <p>The page keeps all notes under one shared storage name.</p>
+          </div>
+          <pre><code>const NOTES_KEY = 'emw2026_notes';
+
+localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+const saved = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}');</code></pre>
+        </article>
+        <article class="code-card">
+          <div class="code-card-header">
+            <h3>Different kinds of notes</h3>
+            <p>The app can remember a note for a session, a speaker, or a general quick thought.</p>
+          </div>
+          <pre><code>session:thu-04
+speaker:maya-rogers
+general:quick-note-1775020500000</code></pre>
+        </article>
+      </div>
+      <div class="feature-grid">
+        <article class="info-card">
+          <h3>Why this choice works</h3>
+          <p>Students can open the site and start typing right away. No sign-in is needed.</p>
+        </article>
+        <article class="info-card">
+          <h3>What it remembers</h3>
+          <p>The app can remember notes tied to a session, notes tied to a speaker, and multiple quick notes for anything else.</p>
+        </article>
+        <article class="info-card">
+          <h3>The tradeoff</h3>
+          <p>If you switch browsers or clear storage, the notes will not come with you. Simple tools often trade power for ease.</p>
+          <div class="mode-extra">In coder language, the data is stored as JSON text inside <span class="inline-code">localStorage</span>, and the app stamps notes with created and updated times.</div>
+        </article>
+      </div>
+      <div class="concept-links">
+        <a class="concept-link" href="https://g.ai/?q=what+is+localStorage+in+web+browsers+simple+explanation" target="_blank" rel="noopener">localStorage ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=what+is+JSON+and+why+is+it+used+in+web+apps" target="_blank" rel="noopener">JSON ↗</a>
+      </div>
+    </section>
+
+    <section class="panel section-stack mode-only intent-only" data-audience="coder" data-intent="tinkering" id="scratch">
+      <p class="eyebrow">If You've Coded Before</p>
+      <h2>A few quick bridges to basic programming</h2>
+      <p class="panel-copy">
+        If you have done Scratch or basic programming before, these comparisons can help you connect what you already know to this page.
+      </p>
+      <div class="comparison">
+        <div class="comparison-row">
+          <span class="comparison-label">Scratch list</span>
+          <p class="comparison-value">A JavaScript array like <span class="inline-code">SCHEDULE</span>. Both store many items in order.</p>
+        </div>
+        <div class="comparison-row">
+          <span class="comparison-label">Scratch variable</span>
+          <p class="comparison-value">A JavaScript variable or constant like <span class="inline-code">NOTES_KEY</span> or <span class="inline-code">NOTE_TYPES</span>.</p>
+        </div>
+        <div class="comparison-row">
+          <span class="comparison-label">When green flag clicked</span>
+          <p class="comparison-value">The startup section near the bottom that calls <span class="inline-code">renderSchedule()</span> when the page loads.</p>
+        </div>
+        <div class="comparison-row">
+          <span class="comparison-label">When this sprite clicked</span>
+          <p class="comparison-value">An event listener like <span class="inline-code">btn.addEventListener('click', ...)</span>.</p>
+        </div>
+        <div class="comparison-row">
+          <span class="comparison-label">Broadcast message</span>
+          <p class="comparison-value">Calling a function such as <span class="inline-code">activateTab('notes')</span> so other parts of the app react.</p>
+        </div>
+        <div class="comparison-row">
+          <span class="comparison-label">Change costume / backdrop</span>
+          <p class="comparison-value">Adding or removing classes like <span class="inline-code">active</span>, <span class="inline-code">expanded</span>, or <span class="inline-code">hidden</span>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel section-stack intent-only" data-intent="tinkering" id="experiments">
+      <p class="eyebrow">Hands-on ideas</p>
+      <h2>Safe experiments to try</h2>
+      <p class="panel-copy">
+        These are low-risk edits with a high chance of success. Try one at a time, refresh the page, and notice what changed.
+      </p>
+      <div class="experiment-grid">
+        <article class="experiment-card">
+          <span class="mini-label">Experiment 1</span>
+          <h3>Change the accent color</h3>
+          <p>Find <span class="inline-code">--teal: #07a8a8;</span> in <span class="inline-code">:root</span> and replace it with a new color.</p>
+          <div class="plain-list">
+            <p class="list-text">Watch how many buttons, badges, and highlights update together.</p>
+          </div>
+        </article>
+        <article class="experiment-card">
+          <span class="mini-label">Experiment 2</span>
+          <h3>Rename a tab</h3>
+          <p>Search for the visible word <span class="inline-code">Speakers</span> in the HTML and rename it to something like <span class="inline-code">People</span>.</p>
+          <div class="plain-list">
+            <p class="list-text">Notice how HTML text changes are often the easiest first wins.</p>
+          </div>
+        </article>
+        <article class="experiment-card">
+          <span class="mini-label">Experiment 3</span>
+          <h3>Edit a toast message</h3>
+          <p>Find <span class="inline-code">showToast('Note saved ✓')</span> and change the words.</p>
+          <div class="plain-list">
+            <p class="list-text">This helps you see where the page stores short feedback messages.</p>
+          </div>
+        </article>
+        <article class="experiment-card">
+          <span class="mini-label">Experiment 4</span>
+          <h3>Add a new session detail</h3>
+          <p>Edit one object inside <span class="inline-code">const SCHEDULE = [</span>, then refresh and inspect how it appears in the accordion card.</p>
+          <div class="plain-list">
+            <p class="list-text">This shows how written-down information turns into something visible on the page.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="questions">
+      <p class="eyebrow">Questions To Ask</p>
+      <h2>Good questions while reading the page</h2>
+      <details open>
+        <summary>Why store conference data in JavaScript instead of writing every card by hand?</summary>
+        <p class="faq-copy">Because the cards follow the same pattern. Writing the information once and reusing the pattern means the page stays consistent and is much easier to update — change one speaker name in the data and every place it appears updates automatically.</p>
+      </details>
+      <details>
+        <summary>Why does the app build HTML strings instead of using a framework?</summary>
+        <p class="faq-copy">Because simple is a feature here. One easy-to-open file is great for a conference site and easier for beginners to inspect. Frameworks add power, but also add setup steps and learning curve that were not needed for this project.</p>
+      </details>
+      <details>
+        <summary>Why is there an <span class="inline-code">esc()</span> function?</summary>
+        <p class="faq-copy">Because the page sometimes drops text into the page structure. Without escaping, a note containing a <span class="inline-code">&lt;</span> character could accidentally be treated as part of the page code instead of displayed as text. This is a basic web security habit.</p>
+      </details>
+      <details>
+        <summary>Why attach event listeners after rendering?</summary>
+        <p class="faq-copy">Because the buttons have to exist before the page can connect behavior to them. First create them, then teach them what to do. If you tried to attach a listener to a button that has not been created yet, the code would fail silently.</p>
+      </details>
+      <details>
+        <summary>Why do notes stay on this device instead of syncing to an account?</summary>
+        <p class="faq-copy">Because the goal was zero friction for students: open the page, start typing, done. No sign-up, no login, no server. The tradeoff is that notes live in one browser on one device.</p>
+      </details>
+      <details>
+        <summary>How does the app know which session is happening right now?</summary>
+        <p class="faq-copy">The JavaScript compares session start and end times against the current time on your phone (in Hawai'i time). It checks every minute and moves the NOW and Up Next badges accordingly.</p>
+      </details>
+      <details>
+        <summary>What would be the next level up from here?</summary>
+        <p class="faq-copy">A natural next step would be to split the project into smaller files once one big file starts to feel crowded. After that, a component framework like React or Vue could help manage more complex interactions — but for this scale, plain HTML and JavaScript do the job well.</p>
+      </details>
+      <div class="concept-links" style="margin-top: 1rem;">
+        <a class="concept-link" href="https://g.ai/?q=how+do+web+apps+work+explained+for+beginners" target="_blank" rel="noopener">How web apps work ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=what+is+GitHub+Pages+and+how+does+it+host+websites" target="_blank" rel="noopener">GitHub Pages ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=what+is+the+difference+between+HTML+CSS+and+JavaScript" target="_blank" rel="noopener">HTML vs CSS vs JS ↗</a>
+      </div>
+    </section>
+
+    <section class="panel section-stack" id="offline">
+      <p class="eyebrow">Works Without WiFi</p>
+      <h2>How the app works offline</h2>
+      <p class="panel-copy">
+        Conference WiFi can be unreliable, so the app saves itself to your phone the first time you visit.
+        After that first load, it opens instantly even without an internet connection.
+      </p>
+      <div class="feature-grid">
+        <article class="info-card">
+          <h3>First visit saves everything</h3>
+          <p>A small background helper downloads the app files and stores them in the browser's cache, like pre-loading a playlist before a flight.</p>
+        </article>
+        <article class="info-card">
+          <h3>Returns are instant</h3>
+          <p>On later visits, the browser opens the saved copy immediately while quietly checking for updates in the background.</p>
+          <div class="mode-extra">This pattern is called stale-while-revalidate. The file <span class="inline-code">sw.js</span> is a service worker that manages the cache.</div>
+        </article>
+      </div>
+      <div class="concept-links">
+        <a class="concept-link" href="https://g.ai/?q=what+is+a+service+worker+in+web+development+simple+explanation" target="_blank" rel="noopener">Service workers ↗</a>
+        <a class="concept-link" href="https://g.ai/?q=what+does+stale+while+revalidate+caching+mean" target="_blank" rel="noopener">Stale-while-revalidate ↗</a>
+      </div>
+    </section>
+
+    <section class="panel section-stack">
+      <p class="eyebrow">Why this fits the event</p>
+      <h2>Conference-friendly engineering choices</h2>
+      <div class="feature-grid">
+        <article class="info-card">
+          <h3>No build step</h3>
+          <p>Anyone can open the site quickly, and future editors can make changes without extra setup getting in the way.</p>
+        </article>
+        <article class="info-card">
+          <h3>Fast to teach from</h3>
+          <p>Learners can inspect the real page in one place instead of bouncing through a lot of folders and tools.</p>
+        </article>
+        <article class="info-card">
+          <h3>Good on a phone</h3>
+          <p>The design focuses on scrolling, contrast, and easy taps because students will actually use it on their phones during the event.</p>
+        </article>
+        <article class="info-card">
+          <h3>Private notes</h3>
+          <p>Device-only note storage is practical when you want quick note taking without accounts, passwords, or a server.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="panel section-stack">
+      <p class="eyebrow">Keep exploring</p>
+      <h2>Where to go from here</h2>
+      <p class="footer-note intent-only" data-intent="viewing">
+        You now have a mental map of the whole app. Next time you use a website or app, try noticing the same patterns — the repeated card layouts, the tabs, the saved state. Builder thinking is a skill that works everywhere.
+      </p>
+      <p class="footer-note intent-only" data-intent="tinkering">
+        Start with the smallest edit that interests you, check the result, and build from there. Every working developer started by changing one small thing and refreshing the page.
+      </p>
+      <p class="footer-note">
+        This app was built entirely with <a href="https://g.ai/?q=what+is+Claude+Code+by+Anthropic+and+how+is+it+used+for+coding" target="_blank" rel="noopener" style="color: var(--teal); text-decoration: underline; text-underline-offset: 3px;">Claude Code</a> through a series of conversations — starting with a simple request and growing one feature at a time. The full story is in the project's <a href="https://github.com/lpcode808/EMW2026/blob/main/README.md" target="_blank" rel="noopener" style="color: var(--teal); text-decoration: underline; text-underline-offset: 3px;">README</a>.
+      </p>
+      <div class="footer-actions">
+        <a class="action-link primary" href="index.html">Open the live app</a>
+        <a class="action-link secondary" href="https://emwhawaii.com/2026" target="_blank" rel="noopener">Official event site</a>
+        <a class="action-link secondary intent-only" data-intent="tinkering" href="https://github.com/lpcode808/EMW2026" target="_blank" rel="noopener">View source on GitHub</a>
+      </div>
+    </footer>
+  </main>
+  <script>
+    const GUIDE_INTENT_KEY = 'emw2026_codeguide_intent';
+    const GUIDE_MODE_KEY = 'emw2026_codeguide_mode';
+    const intentButtons = document.querySelectorAll('.intent-btn');
+    const modeButtons = document.querySelectorAll('.mode-btn');
+
+    function applyGuideIntent(intent) {
+      const nextIntent = intent === 'tinkering' ? 'tinkering' : 'viewing';
+      document.body.dataset.intent = nextIntent;
+
+      intentButtons.forEach(btn => {
+        const isActive = btn.dataset.intent === nextIntent;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    }
+
+    function applyGuideMode(mode) {
+      const nextMode = mode === 'coder' ? 'coder' : 'beginner';
+      document.body.dataset.mode = nextMode;
+
+      modeButtons.forEach(btn => {
+        const isActive = btn.dataset.mode === nextMode;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    }
+
+    const savedIntent = localStorage.getItem(GUIDE_INTENT_KEY);
+    const savedMode = localStorage.getItem(GUIDE_MODE_KEY);
+    applyGuideIntent(savedIntent);
+    applyGuideMode(savedMode);
+
+    intentButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const nextIntent = btn.dataset.intent;
+        localStorage.setItem(GUIDE_INTENT_KEY, nextIntent);
+        applyGuideIntent(nextIntent);
+      });
+    });
+
+    modeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const nextMode = btn.dataset.mode;
+        localStorage.setItem(GUIDE_MODE_KEY, nextMode);
+        applyGuideMode(nextMode);
+      });
+    });
+  </script>
+</body>
+</html>

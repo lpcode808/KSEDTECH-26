@@ -1,0 +1,796 @@
+[
+  {
+    "sourceRow": 2,
+    "id": "session-01-connecting-with-enehana-technology-aligning-",
+    "title": "Connecting with ʻEnehana (Technology): Aligning Place and Community with AI",
+    "presenters": [
+      "Featured Presenter",
+      "Amanda Nelson",
+      "DOE Office of Curriculum and Instructional Design – ʻEnehana Magazine"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Technology is at its best when it strengthens our connections to place and community. In this session, ʻEnehana magazine showcases how Google AI can support work deeply rooted in Hawaiʻi, such as ʻĀina Aloha and other local initiatives. We’ll dive into Gemini and NotebookLM, moving beyond technical basics to focus on purposeful integration. Join us for an exploration of how AI can serve as a catalyst for a more connected, meaningful, and place-based workflow."
+  },
+  {
+    "sourceRow": 3,
+    "id": "session-02-from-silos-to-systems-creating-a-smarter-mor",
+    "title": "From Silos to Systems: Creating a Smarter, More Connected School Day with AI",
+    "presenters": [
+      "Ben Star",
+      "Renaissance Learning",
+      "Dan Yahata",
+      "Renaissance Learning"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Educators are surrounded by data—but too often it lives in disconnected systems. Assessments, standards, curriculum, interventions, and practice tools each operate in isolation, making it difficult to see the full picture of a student’s needs or determine the right next step. In this session, we’ll explore how AI can connect these silos into a cohesive, intelligent ecosystem—turning insight into action. Learn how a unified approach can simplify instructional decision‑making, reduce teacher burden, and ensure every student receives timely, personalized support throughout the school day."
+  },
+  {
+    "sourceRow": 4,
+    "id": "session-03-enhancing-hybrid-learning-through-student-co",
+    "title": "Enhancing Hybrid Learning through Student Connections",
+    "presenters": [
+      "Dr. Brina Domingo",
+      "Chaminade University of Honolulu"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "In this session, participants will learn how to take instruction to the next level through utilizing various online platforms to increase engagement and collaboration that I have personally used and found success with students. Additionally, through the use of adapting various SEL techniques to meet student needs, participants will be exposed to developing a safe and positive learning community both in-person and in online classroom settings. I will share templates for participants to take away and use in their own schools as well."
+  },
+  {
+    "sourceRow": 5,
+    "id": "session-04-a-o-ai-student-voices-on-the-future-of-learn",
+    "title": "Aʻo AI: Student Voices on the Future of Learning",
+    "presenters": [
+      "Burt Lum",
+      "Hawaiʻi Public Radio",
+      "KSK Kaʻāmauloa Haumāna"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "This session explores how haumāna navigate Artificial Intelligence in their daily lives and how kumu can shift from policing technology to facilitating its use as a tool for empowerment and advocacy. Moving beyond basic digital literacy, we reframe this panel of student leaders as the next generation of experts who are equipped with the substantive skills and accountability necessary to steer digital innovation. Through candid discussions and screen demonstrations, these leaders will showcase how they apply specific digital competencies to break down complex projects, overcome academic struggles, and navigate the ethical gray areas of digital assistance . Kumu will leave with fresh perspectives on fostering a multistakeholder classroom where students and educators engage to co-design tech-enabled solutions that address real-world challenges."
+  },
+  {
+    "sourceRow": 6,
+    "id": "session-05-from-learners-to-leaders-building-student-ag",
+    "title": "From Learners to Leaders: Building Student Agency Through Cross-Level STEM Design",
+    "presenters": [
+      "Charles Wade",
+      "Mid-Pacific"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "What happens when students move from consumers of learning to designers of it? In this session, participants will explore a cross-divisional STEM model in which IB Physics students design and facilitate elementary learning experiences using generative AI as a structured thought partner. We will examine how intentional scaffolding, voice and choice, and authentic audience transform learners into leaders. Attendees will leave with a practical framework for cultivating student agency while using AI to deepen—not replace—critical thinking and creativity."
+  },
+  {
+    "sourceRow": 7,
+    "id": "session-06-ks-publishing",
+    "title": "KS Publishing",
+    "presenters": [
+      "Chris McAdoo",
+      "KS Publishing",
+      "Miki Maeshiro",
+      "KS Publishing"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "Kamehameha Publishing is an ‘ōiwi Hawaiʻi publisher of high-quality, community-based materials that amplify ʻōlelo Hawaiʻi, ʻike Hawaiʻi, and kuanaʻike Hawaiʻi. Utilizing a range of print and digital media, Kamehameha Publishing delivers rich and engaging Hawaiian culture-based educational content for haumāna of all ages in both formal and informal settings."
+  },
+  {
+    "sourceRow": 8,
+    "id": "session-07-create-a-custom-puzzle",
+    "title": "Create a Custom Puzzle",
+    "presenters": [
+      "Corey Pasman",
+      "Kamehameha Schools"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "In this session, you’ll learn how to transform a picture, drawing, or custom design into a puzzle! We’ll cover design basics in Canva and get hands-on experience with the Glowforge laser and Silhouette cutter. We’ll also discuss low-tech, classroom friendly options for creating puzzles if you don’t have access to those tools. By the end of this session, you’ll walk away with your own custom puzzle to take home or use with your students."
+  },
+  {
+    "sourceRow": 9,
+    "id": "session-08-wayfinding-learning-stations-an-interactive-",
+    "title": "Wayfinding Learning Stations: An Interactive Exploration through Holomoana",
+    "presenters": [
+      "Featured Presenter",
+      "Edmond Mak",
+      "Kamehameha Schools",
+      "KS Digital Learning Team"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "This session will feature a playground-style setup with 4–5 stations. Each station will highlight two or more specific themes and showcase the learning objects developed for those themes. Examples of themes include: Parts of the Wa’a , Star Navigation, Sense of Place and Kilo, Knots Attendees will be able to casually visit each station to learn about the different themes through interacting with the different handouts, videos, and mele and potentially participate in additional large‑group activities or games designed for multiple learners."
+  },
+  {
+    "sourceRow": 10,
+    "id": "session-09-place-space-identity-and-preparation",
+    "title": "Place, Space, Identity, and Preparation",
+    "presenters": [
+      "Featured Presenter",
+      "Dr. Evan Beachy",
+      "Kamehameha Schools",
+      "Keʻalohi Reppun",
+      "Punahou School"
+    ],
+    "strands": [
+      "Well-being"
+    ],
+    "description": "We often focus on curriculum and instruction—but what if readiness to learn is shaped just as much by place, space, and identity? In this unscripted talk story session, Kealohi Reppun, Mitch Weathers, and Evan explore the connections between kilo, trauma-informed practice, executive functioning, and the design of learning environments. Together, they surface a central tension: why do beautiful spaces and strong systems still fail to transform learning? Participants are invited into the conversation to reflect, question, and reimagine what it means to truly prepare students to learn."
+  },
+  {
+    "sourceRow": 11,
+    "id": "session-10-connecting-culture-data-and-leadership-the-k",
+    "title": "Connecting Culture, Data, and Leadership: The Kamaehu Experiment",
+    "presenters": [
+      "Featured Presenter",
+      "Dr. Evan Beachy",
+      "Kamehameha Schools",
+      "Leinani Makekau-Whittaker",
+      "Kamehameha Schools",
+      "Kimo Chun",
+      "Kamehameha Schools",
+      "Louisa “Sasa” Lee",
+      "Kamehameha Schools"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "The Kamaehu cohort experiments at the intersection of indigenous knowledge, strengths science, and digital tools. Leaders engage in strategic play through Kōnane, analyze team patterns through strengths data, and document growth through open, non-ranking reflection systems. This session shares how blending culture and computation can build collective agency and sustainable leadership capacity."
+  },
+  {
+    "sourceRow": 12,
+    "id": "session-11-aina-education-professional-development-lear",
+    "title": "ʻĀina education professional development: Learning from five cohorts in Heʻeia",
+    "presenters": [
+      "Frederick Reppun",
+      "He’eia National Estuarine Research Reserve",
+      "M. Pumehana Cabral",
+      "He’eia National Estuarine Research Reserve",
+      "Danielle Lenix",
+      "Hauʻula Elem. School"
+    ],
+    "strands": [
+      "Culture",
+      "Advocacy",
+      "Agency",
+      "Transformation",
+      "Well-being"
+    ],
+    "description": "This interactive lecture will give an overview of our experience over the past six years running an ʻāina-based teacher professional development program for the Heʻeia National Estuarine Research Reserve (NERR). The program takes a cohort approach where a group of local pre-K-12 teachers form a year-long peer-to-peer learning network that fosters inquiry, relationship building, and collective problem-solving as teachers design and lead their own ʻāina-based projects. We will present some examples of teachersʻ work and data from their digital portfolios on the Unrulr app. We will engage the audience in helping us to think through key evaluative questions we seek to deepen the impact of the program in future phases."
+  },
+  {
+    "sourceRow": 13,
+    "id": "session-12-activating-aina-based-education-through-digi",
+    "title": "Activating ‘Āina Based Education Through Digital Tools",
+    "presenters": [
+      "Heidi Waiamau",
+      "Kealaiwikuamo’o o Ke Kula o Kamehameha"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "This hands-on session explores how educators can integrate ʻike kūpuna, moʻolelo, and ʻāina-based learning with interactive digital tools to deepen student engagement and cultural identity. Participants will experience examples of place-based, culturally grounded digital resources and learn how to design their own using Genially. Through guided creation time, attendees will build a simple interactive lesson, story, or activity they can use in their classrooms. This session centers culture as the foundation, with technology serving as a tool to activate learning, strengthen ʻōlelo Hawaiʻi, and inspire real-world connections to ʻāina and community."
+  },
+  {
+    "sourceRow": 14,
+    "id": "session-13-planning-for-instructional-impact-with-copil",
+    "title": "Planning for Instructional Impact with Copilot: From Tasks to Transformational Teaching",
+    "presenters": [
+      "Geri Gillespy",
+      "Microsoft"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "This session positions Copilot as a collaborative co‑planning partner that helps educators move from task completion to meaningful instructional impact. Using the Teach Module in Copilot Chat, participants will design engaging lessons with clear objectives, differentiated learning pathways, and authentic checks for understanding. The session emphasizes reflection and alignment to system priorities, helping educators shift from using AI for efficiency to using it to strengthen instructional coherence and student outcomes."
+  },
+  {
+    "sourceRow": 15,
+    "id": "session-14-ed-tech-playground",
+    "title": "Ed Tech Playground",
+    "presenters": [
+      "HSTE"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Ignite your vision for a more innovative Hawaii at the HSTE EdTech Playground! This interactive space is being provided to empower educators to explore and engage with technology. Dive into cutting-edge technologies alongside fellow educators. Share best practices, discover solutions to personalize learning, and bridge the digital divide. Let’s empower learners, ensure equitable access, and unlock their full potential. Join us at the HSTE EdTech Playground: It’s where we build the future of education in Hawaii, together!"
+  },
+  {
+    "sourceRow": 16,
+    "id": "session-15-ed-tech-slam",
+    "title": "Ed Tech Slam",
+    "presenters": [
+      "HSTE"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Need practical EdTech tools and a good laugh? Join the HSTE EdTech SLAM! Educators from HSTE will share their best tips and resources in a dynamic, entertaining showdown. You, the audience, vote for the winner in this spirited competition. Walk away with tangible tech solutions and enjoy a truly fun session."
+  },
+  {
+    "sourceRow": 17,
+    "id": "session-16-ai-slam",
+    "title": "AI Slam",
+    "presenters": [
+      "HSTE"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Explore the power of AI in education – SLAM style! HSTE educators present their top AI tips and tools in a high-energy, humorous competition where you pick the champion. It’s a friendly-yet-fierce battle guaranteed to leave you with actionable AI insights and a memorable, fun experience."
+  },
+  {
+    "sourceRow": 18,
+    "id": "session-17-weaving-a-kula-place-based-pathways-to-piko-",
+    "title": "Weaving a Kula: Place-based Pathways to Piko, Passion, and Purpose",
+    "presenters": [
+      "Featured Presenter",
+      "Jacqueline Kroupa",
+      "Purple Maiʻa Foundation"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "Our communities are abundant with waiwai — people, places, and experiences that hold the richness of who we are. Yet most learning takes place within four walls and behind screens. What if every community became a Kula? What if the work of childhood was to gather pua — vibrant, relational experiences from mauka to makai — each one an opportunity to explore piko, passion, and purpose? In this session, we’ll share how we are moving from vision to system — leveraging technology to weave a community into a Kula and empower youth to become gatherers of pua. Participants will have the opportunity to explore a digital experience designed to help keiki and ʻōpio make meaning of the pua they gather, supporting them in discovering their piko, pursuing their passion, and growing into their purpose."
+  },
+  {
+    "sourceRow": 19,
+    "id": "session-18-unintentional-hackers-students-as-the-weakes",
+    "title": "Unintentional Hackers: Students as the Weakest (and Wildest) Link",
+    "presenters": [
+      "Jacob Thompson",
+      "Osec"
+    ],
+    "strands": [
+      "Culture",
+      "Advocacy",
+      "Agency",
+      "Transformation",
+      "Well-being"
+    ],
+    "description": "Unintentional Hackers: Students as the Weakest (and Wildest) Link explores how curiosity, mischief, and sometimes deliberate exploitation by students introduce real security risks in K–12 and higher education environments. This session examines real world incidents where students bypass content filters, access sensitive data, abuse administrative tools, or disrupt school systems. In some cases, the behavior is accidental. In others, it is executed with surprising technical precision. School infrastructure often lags behind modern security standards due to limited budgets, legacy systems, and usability constraints. Traditional cybersecurity training also fails to resonate with student users, leaving gaps that are easily exploited."
+  },
+  {
+    "sourceRow": 20,
+    "id": "session-19-reducing-digital-friction-helping-tech-feel-",
+    "title": "Reducing Digital Friction: Helping Tech Feel Lighter for Haumāna",
+    "presenters": [
+      "Featured Presenter",
+      "Jamie Nunez",
+      "Common Sense Media"
+    ],
+    "strands": [
+      "Well-being"
+    ],
+    "description": "Teachers and students all feel it. We are just inundated with tech distractions. too many tabs open, too many logins, and students feeling overwhelmed before learning even starts. Using what Common Sense Media’s Census research tells us about how much media kids are really juggling, this session focuses on small, practical shifts teachers can make to reduce stress and distraction in the classroom. We’ll look at how to simplify your tech routines, set clear expectations, and choose tools that actually support focus and learning. The goal is to walk away with strategies to make tech use feel “”lighter””, more intentional, and more supportive of haumāna well-being."
+  },
+  {
+    "sourceRow": 21,
+    "id": "session-20-how-to-talk-to-ohana-about-ai-3-practical-ti",
+    "title": "How to Talk to ʻOhana About AI: 3 Practical Tips for Teachers",
+    "presenters": [
+      "Featured Presenter",
+      "Jamie Nunez",
+      "Common Sense Media"
+    ],
+    "strands": [
+      "Well-being"
+    ],
+    "description": "Even as schools work to use AI thoughtfully, many students are already engaging with AI in other parts of their lives, often outside of school. Grounded in Common Sense Media’s research on teens, trust, and AI, our session will support teachers in helping ʻohana better understand how AI is showing up at home. We will share three practical ways to frame conversations with families, including why some students use AI for companionship, how ʻohana can establish safe and healthy use, and how to strengthen communication between home and school. Bring your questions and stories from your community, and leave with a practical narrative and resources to share."
+  },
+  {
+    "sourceRow": 22,
+    "id": "session-21-weaving-culture-and-coding-connecting-modern",
+    "title": "Weaving Culture and Coding: Connecting Modern Computer Programming to Ancient Ulana Lauhala",
+    "presenters": [
+      "Jerica Manoa",
+      "University of Hawaiʻi, Ka Pilina Noʻeau Hoʻomau",
+      "Megan Dabrowski",
+      "University of Hawaiʻi, Ka Pilina Noʻeau Hoʻomau"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "Ka Pilina Noʻeau Hoʻomau is a grant from the US DOE Native Hawaiian Education Program to increase STEM engagement and improve math and science knowledge and competencies of PreK-5 students, especially those who are Native Hawaiian, through culturally-relevant and hands-on STEM activities. For this presentation, we will present on how the Hawaiians of old used what we term today as computer programming skills in the traditional practice of ulana lauhala (lauhala weaving). We will discuss connections of algorithms, the use of loops and conditionals, and then demonstrate how to use these skills in practice through presenting our lesson geared towards grades 4-5 students, in which they use computer programming skills to make a lauhala bracelet and code programs with an online app."
+  },
+  {
+    "sourceRow": 23,
+    "id": "session-22-hana-me-ka-lima-canva-creations-for-little-l",
+    "title": "Hana Me Ka Lima: Canva Creations for Little Learners",
+    "presenters": [
+      "Jesse Lucas",
+      "Kamehameha Schools – Preschools"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "Pre-K haumāna benefit from consistent, targeted practice delivered in short, developmentally appropriate intervals throughout the school year. This session will demonstrate how kumu can efficiently design cut‑and‑paste activities in Canva to support haumāna learning. These activities strengthen fine‑motor development, reinforce sequencing skills, and deepen understanding of thematic units. During the session, kumu will collaboratively create activities in an open, hands‑on format. All resources developed will be shared with participants at the conclusion of the session."
+  },
+  {
+    "sourceRow": 24,
+    "id": "session-23-fostering-curiosity-in-a-distracted-world",
+    "title": "Fostering Curiosity in a Distracted World",
+    "presenters": [
+      "Featured Presenter",
+      "Dr. John Spencer",
+      "Spencer Education"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "Curiosity is at the heart of deeper learning, but in a world filled with distractions, it’s easy for students to lose that spark. This workshop will provide you with techniques to reignite curiosity through inquiry-based learning and project-driven exploration. We’ll discuss how to create a classroom environment where students feel safe to ask questions and explore ideas. You’ll leave with practical approaches to keep curiosity alive, even in a fast-paced, digital world."
+  },
+  {
+    "sourceRow": 25,
+    "id": "session-24-student-agency-self-directed-learning",
+    "title": "Student Agency & Self‑Directed Learning",
+    "presenters": [
+      "Featured Presenter",
+      "Dr. John Spencer",
+      "Spencer Education"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "Empowering students to take charge of their own learning can lead to deeper engagement and greater academic success. In this workshop, we’ll discuss how to foster self-direction by teaching students to set goals, track their progress, and reflect on their learning. You’ll explore practical ways to build routines that support independence and critical thinking. By the end, you’ll have concrete strategies to nurture student agency in your classroom."
+  },
+  {
+    "sourceRow": 26,
+    "id": "session-25-getting-started-with-deeper-learning",
+    "title": "Getting Started with Deeper Learning",
+    "presenters": [
+      "Featured Presenter",
+      "Dr. John Spencer",
+      "Spencer Education"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "In this hands-on workshop, we’ll dive into practical strategies to help students develop deeper thinking, sustained focus, and meaningful learning habits across content areas. You’ll explore ways to foster mastery, curiosity, problem-solving, resilience, and communication—even in a fast-paced, digital world. Through interactive activities, reflective discussions, and real-world examples, you’ll walk away with a toolkit of approaches to make deeper learning more tangible and attainable for your students. Whether you’re looking to build sustained attention in your classroom or empower students to embrace curiosity and problem-solving, this workshop will provide actionable insights to transform your teaching practice."
+  },
+  {
+    "sourceRow": 27,
+    "id": "session-26-agency-in-the-age-of-ai-five-schools-five-st",
+    "title": "Agency in the Age of AI: Five Schools, Five Student Leaders, One Conversation",
+    "presenters": [
+      "Jon Pennington",
+      "Mid-Pacific"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "Five students from charter, public, and private schools on our island lead a town hall on how AI is shaping the way they learn, lead, and solve real problems. Their experiences range from student government and founding clubs to martial arts excellence and community activism. Each voice reflects a different school culture, community, and set of opportunities and challenges. Through an interactive conversation shaped by audience questions, participants will hear directly from students who are using AI to set goals, make decisions, and respond to real needs around them. This session puts student voice and authentic leadership at the center, giving educators a window into how young people are actually experiencing AI in their learning and lives."
+  },
+  {
+    "sourceRow": 28,
+    "id": "session-27-make-ai-personal-a-student-led-guide-to-cust",
+    "title": "Make AI Personal: A Student-Led Guide to Custom Instructions",
+    "presenters": [
+      "Jon Pennington",
+      "Mid-Pacific"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Most people using AI get generic results because they’ve never told it who they are. In this session, five leaders of Mid-Pacific Institute’s AI Innovators Club show you how to change that. These freshmen, sophomores, and juniors have built custom instructions shaped by athletic competition, dance and choreography, martial arts, and building apps from scratch. You’ll see what each student has written, watch the same prompt produce dramatically different results depending on the instructions behind it, and get a linked document with every example. Then you’ll build your own. Through small group hands-on work, you’ll leave with custom instructions for ChatGPT, Claude, or Gemini you can use and share with colleagues and students."
+  },
+  {
+    "sourceRow": 29,
+    "id": "session-28-multiple-choice-a-film-screening",
+    "title": "“Multiple Choice” – A Film Screening",
+    "presenters": [
+      "Josh Reppun",
+      "Josh Reppun Productions",
+      "Mel Ching",
+      "Pililei Consulting"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "For decades, America’s data-driven college-for-all agenda has created a no-win choice for most high school graduates: take on the risk and expense of college or work a low-wage job. But in an economically-challenged Virginia community, one superintendent is demonstrating the immense power of career-based learning—not as a last-chance resort for some, but as foundational for all. The film “Multiple Choice” immerses viewers in the district’s Innovation Center, where all students explore diverse careers, collaborate, and master traditional and new-economy skills. Amid political turmoil and tech upheaval, “Multiple Choice” offers an inspiring vision of kids finding purposeful paths, with a community united toward the goal of prosperity for all."
+  },
+  {
+    "sourceRow": 30,
+    "id": "session-29-vibe-coding-for-beginners-building-functiona",
+    "title": "Vibe Coding for Beginners: Building Functional Web Apps with Google Gemini and Google Sites",
+    "presenters": [
+      "Justin Lai",
+      "Hawaii School for Girls at La Pietra"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "This intro session demystifies “vibe coding”—the process of building functional apps through conversational descriptions. Aimed at educators without a CS background, we’ll use Google Gemini (including the Canvas interface) to generate single-file applications that solve real classroom problems. We’ll explore a student-centered model where learners act as “Project Managers” rather than syntax memorizers. You’ll witness a live build of a networking app and learn how to deploy AI-generated code instantly using familiar tools like Google Sites. This session collapses the distance between a student’s idea and a working tool, providing a hands-on framework for bridging generative AI with design thinking and basic computational principles. No coding experience required."
+  },
+  {
+    "sourceRow": 31,
+    "id": "session-30-murals-for-your-mind-leveraging-google-gemin",
+    "title": "Murals for Your Mind: Leveraging Google Gemini for Visual Storytelling and Universal Design (UDL)",
+    "presenters": [
+      "Justin Lai",
+      "Hawaii School for Girls at La Pietra"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Transform text-heavy curriculum into high-impact visuals. This session introduces Google Gemini / NotebookLM as a powerful visualization partner for the classroom. We’ll explore how to use generative AI to create custom infographics, diagrams, and conceptual art that support cognitive diversity and Universal Design for Learning (UDL). Participants will learn “visual logic” prompting—turning abstract concepts into clear, student-ready graphics in minutes. Whether you are creating materials to save prep time or teaching students to visualize their own data, this session provides a practical workflow for enhancing engagement through AI-assisted design. Leave with a gallery of prompts and visuals ready to support diverse learners in any subject or grade level."
+  },
+  {
+    "sourceRow": 32,
+    "id": "session-31-e-holomoana-kakou",
+    "title": "E Holomoana Kākou",
+    "presenters": [
+      "Featured Presenter",
+      "Kaiwi Hāmākua-Mākuʻe",
+      "Kamehameha Schools",
+      "Edmond Mak",
+      "Kamehameha Schools"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "Holomoana is an innovative digital learning resource that connects Hawaiian Culture-Based Education with 21st‑century instructional practices. Grounded in the traditions of Polynesian voyaging, it offers interactive, place‑based curriculum that immerses learners in wayfinding, environmental stewardship, and cultural identity through the metaphor of the wa‘a. Integrating math, science, literacy, and Hawaiian language with mo‘olelo and navigational knowledge, Holomoana provides standards‑aligned lessons, animations, infographics, and project‑based learning units. By engaging students in culturally responsive teaching, it strengthens identity and cultivates ‘ike kūpuna for a new generation of voyagers."
+  },
+  {
+    "sourceRow": 33,
+    "id": "session-32-cultivating-ea-a-living-partnership-at-paepa",
+    "title": "Cultivating Ea: A Living Partnership at Paepae o Heʻeia",
+    "presenters": [
+      "Featured Presenter",
+      "Kalei McDonnell",
+      "Kamehameha Schools",
+      "Keliʻi Kotubetey",
+      "Paepae o Heʻeia"
+    ],
+    "strands": [
+      "Advocacy"
+    ],
+    "description": "This session showcases the living partnership between schools and place-based community organizations, using Paepae o Heʻeia as a model for how these relationships can transform the way kumu design, document, and assess place-based learning. Hear directly from haumāna as they share what it meant to contribute real, restorative work to the ʻāina. Then go behind the scenes with educators to explore how interdisciplinary projects were built to serve both academic standards and the needs of a working loko iʻa. Attendees will leave with concrete examples and fresh ideas for moving school-community partnerships beyond the field trip, balancing curriculum goals with a partner’s restoration mission, and using tech-enabled documentation to capture authentic, place-based learning."
+  },
+  {
+    "sourceRow": 34,
+    "id": "session-33-play-think-lead-from-kilo-to-ea-through-kona",
+    "title": "Play, Think, Lead: From Kilo to Ea through Kōnane and Papamū",
+    "presenters": [
+      "Kimo Chun",
+      "Kamehameha Schools",
+      "John Kaohelaulii",
+      "Hawaiian Checkers"
+    ],
+    "strands": [
+      "Culture",
+      "Agency"
+    ],
+    "description": "This interactive session invites educators into Kōnane as a living Indigenous framework for strategic thinking, leadership, and identity. Facilitated by Kimo Chun (Kamehameha Schools) and John Kaohelaulii, participants engage in hands-on gameplay, ʻike kūpuna, and reflective dialogue to explore concepts of kuleana, pilina, and ea.This session positions Kōnane and papamū as tools for teaching problem-solving, cultural literacy, and systems thinking in modern classrooms. Participants leave with practical strategies, ʻōlelo Hawaiʻi integration ideas, and pathways to implement Kōnane-based learning experiences in their own schools and communities."
+  },
+  {
+    "sourceRow": 35,
+    "id": "session-34-ea-and-tech-the-important-role-sovereignty-p",
+    "title": "Ea and Tech: The Important Role Sovereignty Plays in Technology Development and Adoption",
+    "presenters": [
+      "Keoni Mahelona",
+      "Te Hiku Media"
+    ],
+    "strands": [
+      "Culture",
+      "Advocacy",
+      "Transformation"
+    ],
+    "description": "This session will highlight various technologies and platforms developed in house at Te Reo Irirangi o Te Hiku o Te Ika that support learning and education for schools and communities in Aotearoa. We will demonstrate how foundations in EA enabled and empowered us in this journey. We will showcase te reo Māori and ʻōlelo Hawaiʻi AI technologies currently in development. And we’ll conclude with cautions and hope that tech brings to our indigenous communities."
+  },
+  {
+    "sourceRow": 36,
+    "id": "session-35-transforming-the-world-through-cultural-plac",
+    "title": "Transforming the world through Cultural Place-Based Education",
+    "presenters": [
+      "Featured Presenter",
+      "Leilani Antone",
+      "Montessori Camps Hawaiʻi"
+    ],
+    "strands": [
+      "Culture",
+      "Agency"
+    ],
+    "description": "Placed-based education puts the culture of the place of its people in the forefront of their education. Language, math, science, life skills, social studies, history, social interactions, sensory, and all other areas of development are covered through immersion in the indigenous culture of the ʻāina. Dr. Montessori said that children were “the inheritors and passers-on of culture.” Cosmic Education is culture-based education and should be adapted to the culture of the people where it is taking place. Through Cosmic Education, we can cultivate civic leaders in their communities who uphold ethics, self-knowledge, and an understanding to transform the world."
+  },
+  {
+    "sourceRow": 37,
+    "id": "session-36-oki-tuko-using-ai-to-co-design-culturally-ro",
+    "title": "ʻOki Tuko: Using AI to Co-Design Culturally Rooted Learning Experiences",
+    "presenters": [
+      "Mahealani Kauahi",
+      "Kamehameha Schools – Kealaiwikuamoo"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "In the early years of the Hawaiian immersion movement, kumu created their own learning resources in real time; cutting, pasting, and designing curriculum to meet the needs of their haumāna and kaiāulu. These “ʻOki Tuko” days reflected a culture of innovation rooted in ʻike Hawaiʻi. Today, we face a similar moment. With AI and emerging technologies, kumu can rapidly develop culturally grounded resources with AI as a thinking partner and creative amplifier. In this hands-on design lab, participants will prototype lessons using AI to generate ideas, structure learning, and create materials aligned with cultural practice and academic rigor. Bring a laptop and lesson idea; leave with a working prototype and a framework for culturally responsive, AI-supported design."
+  },
+  {
+    "sourceRow": 38,
+    "id": "session-37-our-kaiaulu-votes-empowering-student-voice-c",
+    "title": "Our Kaiāulu Votes: Empowering Student Voice, Civic Agency, and ʻĀina-Based Advocacy Through Education",
+    "presenters": [
+      "Manuwai Peters",
+      "Kamehameha- Kealaiwikuamoʻo",
+      "Ethan Porter",
+      "Mid Pacific Institute"
+    ],
+    "strands": [
+      "Culture",
+      "Advocacy",
+      "Agency",
+      "Transformation",
+      "Well-being"
+    ],
+    "description": "This session introduces Our Kaiāulu Votes, a growing coalition led by Kanaeokana members that mobilizes schools and communities across Hawaiʻi to engage in civic participation through an ʻāina-based and ʻike Hawaiʻi lens. Grounded in Hawaiian values and informed by contemporary civic education practices, this initiative provides a powerful model for integrating real-world civic engagement into secondary classrooms. The session will showcase how schools can move beyond traditional civics instruction toward action-oriented, place-based learning experiences that empower students as informed decision-makers and advocates. Attendees will also receive campaign swag and classroom-ready materials to support immediate implementation and student engagement."
+  },
+  {
+    "sourceRow": 39,
+    "id": "session-38-from-prompt-to-product",
+    "title": "From Prompt to Product",
+    "presenters": [
+      "Marc Nakayama",
+      "Kamehameha Schools"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Discover how AI and makerspace technologies can work together to transform student creativity into meaningful physical products. In this hands-on session, participants will explore a classroom-ready workflow where students begin with a reflective writing activity about their interests, strengths, and identity, then use AI tools to generate personalized trading cards featuring themselves as custom-designed robot characters. Attendees will also see how these creations can be extended into laser-engraved artwork, decorative displays, and even 3D printable figurines using makerspace tools such as laser engravers and 3D printers. Participants will leave with practical ideas, sample prompts, and strategies for integrating AI, creativity, writing, and hands-on making into any K–12 classroom."
+  },
+  {
+    "sourceRow": 40,
+    "id": "session-39-game-design-in-action-playtesting-pa-ani-pil",
+    "title": "Game Design in Action: Playtesting Pāʻani Pilina (Uka Edition)",
+    "presenters": [
+      "Meredith Enos",
+      "Kamehameha Schools",
+      "Makana Garma",
+      "Kamehameha Schools"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "This hands-on session builds on the original Pāʻani Pilina: Kula Card Game, inviting participants to playtest and shape the next “uka” deck. Through fast-paced rounds of gameplay, educators will experience how pilina and kilo come to life in a game setting while getting a behind-the-scenes look at the iterative design process—from concept to prototype. Participants will offer real-time feedback on content and mechanics, directly influencing the development of the next deck in the series. Come ready to play, test, and help refine a tool designed to strengthen connections to ʻāina, each other, and community."
+  },
+  {
+    "sourceRow": 41,
+    "id": "session-40-a-i-pono-feeding-our-futures-with-intention",
+    "title": "A.I. Pono – Feeding our Futures with Intention",
+    "presenters": [
+      "Featured Presenter",
+      "Mike Sarmiento",
+      "Purple Maiʻa Foundation",
+      "Cerina Livaudais",
+      "Purple Maiʻa Foundation"
+    ],
+    "strands": [
+      "Culture",
+      "Transformation"
+    ],
+    "description": "“If you are ʻono for something, then you need to learn how to make it.” As artificial intelligence continues to shape our world, nearly all of us are already in relationship with it, most often through the lens of consumer or user. In Hawaiʻi, our communities are uniquely positioned to shape the future of AI, yet remain underrepresented in its creation. This session explores A.I. Pono as a philosophy for shifting from consumption to creation. We will examine how ancestral ways of being can guide ethical and empowering engagement with AI. Participants will engage in dialogue about becoming builders and feeders of community, and explore a student-centered app designed to spark this mindset shift and equip learners to create A.I. in service of their communities and futures."
+  },
+  {
+    "sourceRow": 42,
+    "id": "session-41-executive-functions-for-every-classroom-crea",
+    "title": "Executive Functions for Every Classroom: Creating Safe and Predictable Learning Environments",
+    "presenters": [
+      "Featured Presenter",
+      "Mitch Weather",
+      "Organized Binder, Inc."
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "In this session, educators will learn how to incorporate executive functions as a universal MTSS tier 1 intervention in every classroom. We will focus on both Core and Higher Order executive functions that support planning, organization, and flexible problem-solving, and the fostering of student agency. We will explore how clarity, predictable routines, and intentional modeling can create the conditions for students to strengthen these skills and apply them across academic and social contexts. Participants will also examine strategies for engaging families to reinforce consistency between home and school, ensuring that students experience aligned support. They will leave with practical tools and evidence-informed strategies to apply in their own settings."
+  },
+  {
+    "sourceRow": 43,
+    "id": "session-42-ohelo-there-come-kala-borate-with-us-and-be-",
+    "title": "Ōhelo There! Come Kala-borate with us and be a part of the Waihona",
+    "presenters": [
+      "Moani Furuta",
+      "Lauren Kikukawa",
+      "Tina Kinimaka",
+      "Tevai Lopez",
+      "Kamehameha Schools- Kealaiwikuamoʻo"
+    ],
+    "strands": [
+      "Culture"
+    ],
+    "description": "What if the next powerful learning resource for your haumāna didn’t just come from a repository—but from you? Holoholo with us for a hands-on, collaborative session that brings the Waihona.net to life through the collective ʻike of the Kanaeokana network. Together, we’ll explore how educators can not only access high-quality, culturally grounded resources—but adapt, remix, and create new ones that reflect the needs of our lāhui today. Please bring a laptop or device to participate in our session activities."
+  },
+  {
+    "sourceRow": 44,
+    "id": "session-43-design-create-prompt-repeat",
+    "title": "Design. Create. Prompt. Repeat.",
+    "presenters": [
+      "Nozomi Ozaki",
+      "Punahou School",
+      "Kris Schwengel",
+      "Punahou School"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "What happens when students partner with AI to design, create, and think? Come find out! In this interactive session, explore how a K–8 Design Technology and Engineering program builds collaboration, creativity, and critical thinking through making, coding, and AI. From cardboard creations and Scratch projects to AI-generated visuals, data comparisons, and student-designed games, see learning in action. You’ll explore student work and jump into a hands-on make-and-take, using AI to design something you can bring back to your classroom. Come ready to create, and steal a few ideas along the way!"
+  },
+  {
+    "sourceRow": 45,
+    "id": "session-44-who-are-we-becoming-redefining-students-educ",
+    "title": "Who Are We Becoming? Redefining Students, Educators, and Parents for a Changing World",
+    "presenters": [
+      "Robert Landau",
+      "Two Roads Education and The Guardian Project"
+    ],
+    "strands": [
+      "Culture",
+      "Advocacy",
+      "Agency",
+      "Transformation",
+      "Well-being"
+    ],
+    "description": "In a rapidly changing world shaped by AI, global challenges, and new definitions of work, schools must rethink not only what students learn, but who they are becoming and who the adults around them must become as well. This session explores Portraits of a Future-Ready Student, Educator, and Parent. Participants will examine emerging competencies, reflect on shifting roles, and begin drafting clear, actionable portrait frameworks. These living portraits serve as strategic anchors to align curriculum, teaching, and community with a future-ready vision grounded in identity, agency, and purpose."
+  },
+  {
+    "sourceRow": 46,
+    "id": "session-45-arcgis-online-for-aina-based-projects",
+    "title": "ArcGIS Online for ʻĀina-Based Projects",
+    "presenters": [
+      "Tessie Ford",
+      "Kamehameha Schools Kapālama"
+    ],
+    "strands": [
+      "Culture",
+      "Advocacy",
+      "Agency",
+      "Transformation",
+      "Well-being"
+    ],
+    "description": "Participants will learn about how Esri ArcGIS Online applications, like Map Viewer and StoryMaps, could be a useful tool to to engage our students in ʻāina-based instruction and place/problem-based projects."
+  },
+  {
+    "sourceRow": 47,
+    "id": "session-46-aloha-and-resilience-considered-student-stor",
+    "title": "Aloha and Resilience Considered: Student Stories on Connection, p4c Hawai‘i, and the Impact of Taking the Time to Care",
+    "presenters": [
+      "Featured Presenter",
+      "Dr. Thomas (“Toby”) Yos",
+      "University of Hawaii Uehiro Academy for Philosophy and Ethics in Education"
+    ],
+    "strands": [
+      "Well-being"
+    ],
+    "description": "“Dear Mr. Toby, you have no idea how hard my life is.” This note, left by a 4th Grader on a counseling room desk, launched philosophy for children Hawai‘i (p4cHI) specialist Dr. Toby Yos on a decades-long effort to explore how to best support children in the present while simultaneously preparing them for the future. Drawing upon his studies in aloha and Resilience Theory, he will explore the root causes for the devaluing of relationships and the importance of connection. Toby will be joined by Grade 7-12 students from his p4cHI demonstration group. Sharing stories about inspiring teachers and talking about the impact that the purposeful cultivation of aloha-laden relationships through p4cHI has had on their lives, these students will provide first-hand accounts of the power of connection."
+  },
+  {
+    "sourceRow": 48,
+    "id": "session-47-thinking-well-together-the-p4c-hawai-i-appro",
+    "title": "Thinking Well Together: The p4c Hawai‘i Approach to Cultivating Aloha-Laden Communities and Meaningful Conversation",
+    "presenters": [
+      "Featured Presenter",
+      "Dr. Thomas (“Toby”) Yos",
+      "University of Hawaii Uehiro Academy for Philosophy and Ethics in Education"
+    ],
+    "strands": [
+      "Well-being",
+      "Agency"
+    ],
+    "description": "Born elsewhere but transformed by Hawai‘i, philosophy for children Hawai‘i (p4cHI) is a 43 year old educational approach that transforms classrooms into aloha-laden communities of inquiry where students engage in a practice of meaningful conversation and co-create an environment where vital cognitive and social-emotional competencies are lived, modeled, and learned. “Ma ka hana ka ‘ike” (“In working one learns”) (‘Ōlelo No‘eau #2088). The best way to understand p4cHI is to see it in action. After providing a brief introduction and using Pono Shim’s “E ‘Ohana Hou” video as a stimulus, University of Hawai‘i p4cHI specialist Dr. Toby Yos and Grade 7-12 students from his advanced p4cHI demonstration group will lead workshop participants through a p4cHI style conversation and inquiry."
+  },
+  {
+    "sourceRow": 49,
+    "id": "session-48-cultivating-minds-that-can-correct-a-machine",
+    "title": "Cultivating Minds That Can Correct a Machine: Bias, Literacy, and the AI-Integrated Future",
+    "presenters": [
+      "Timothy Freitas",
+      "Kamehameha Schools",
+      "Cynthia Madden"
+    ],
+    "strands": [
+      "Transformation"
+    ],
+    "description": "Feed an AI model a biased assumption and it will carry that assumption forward, confidently at scale. That part concerns people, and it should. But here is what makes this moment different: when you point out that bias to a large language model, it does not feel threatened. There is no ego protection of conditioned beliefs. You simply show it better information, and it updates. The model receives it as data rather than an attack on its identity bias, because it has no identity to protect. That gap between how slowly humans change their minds and how quickly an AI can be recalibrated, is one of the most important and underexplored ideas in education today. And it has direct consequences for the students in our classrooms right now. AI is being integrated into construction equipment, ocean monitoring, agricultural systems, financial tools, and healthcare workflows across every industry and island. The students growing up here are entering a world where understanding how to identify bias in an AI output and knowing how to correct is a core workplace skill, as foundational as any other. The people who will lead in that world are the ones who know how to ask better questions, who understand that a confident-sounding AI output still needs to be examined, and who bring the curiosity and rigor to push back, reframe, and recalibrate until the output reflects the truth of a situation. This session is for educators thinking about what technical literacy looks like in an AI-integrated future and how to cultivate the kind of minds that can correct a machine, not just operate one."
+  },
+  {
+    "sourceRow": 50,
+    "id": "session-49-students-as-designers-real-world-learning-in",
+    "title": "Students as Designers: Real-World Learning in Action",
+    "presenters": [
+      "Trista Zobitz",
+      "ASU Preparatory Academy"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "What happens when students move from completing assignments to solving real-world problems? In this interactive session, participants explore how positioning students as designers boosts engagement, deepens learning, and builds durable skills. Centered on ASU Prep Digital+, a blended model expanding access, flexibility, and rigor, the session highlights how intentional design and digital tools connect learning to real-world application. Through collaborative activities, participants examine strategies that foster student agency, authentic engagement, and meaningful outcomes. Grounded in research on deeper learning and student ownership, educators will leave with a practical framework and a ready-to-use idea for designing real-world learning in their own context."
+  },
+  {
+    "sourceRow": 51,
+    "id": "session-50-beyond-the-tool-building-ai-literacy-to-tran",
+    "title": "Beyond the Tool: Building AI Literacy to Transform Learning",
+    "presenters": [
+      "Featured Presenter",
+      "Dr. Tye Deal",
+      "Kumu T LLC"
+    ],
+    "strands": [
+      "Transformation",
+      "Agency"
+    ],
+    "description": "Artificial intelligence is rapidly reshaping teaching, learning, and decision‑making. Many kumu are being asked to use AI without first developing a clear understanding of what it is, how it works, and when its use is appropriate. This session focuses on AI literacy, helping kumu move beyond surface‑level tool use toward ethical, intentional, and confidence‑driven integration. Participants will explore the foundational ideas behind generative AI and machine learning through short Try & Apply activities, unpack common misconceptions, and examine where bias, limitations, and human judgment matter most. Using a practical framework grounded in computational thinking, ethical awareness, and reflective decision‑making, kumu will engage in hands‑on experiences that model how AI can act as a thinking partner without replacing professional expertise or haumāna agency. The session balances kumu‑facing learning with classroom‑ready strategies, offering approaches participants can adapt directly for haumāna to foster critical thinking, discernment, and responsible AI use. By centering purpose over productivity, this session supports transforming learning experiences—helping kumu and haumāna understand not just how to use AI, but why, when, and whether its use truly serves learning. Participants will leave with increased confidence, shared language for discussing AI with colleagues and haumāna, and a transferable framework for using artificial intelligence to support deeper learning, creativity, and future readiness."
+  },
+  {
+    "sourceRow": 52,
+    "id": "session-51-put-the-oxygen-mask-on-first-designing-syste",
+    "title": "Put the Oxygen Mask on First: Designing Systems That Sustain Educators",
+    "presenters": [
+      "Featured Presenter",
+      "Victoria Thompson"
+    ],
+    "strands": [
+      "Agency"
+    ],
+    "description": "Educator burnout is not a personal failure; it is a systems challenge. This session invites educators, school leaders, and state leaders to rethink wellbeing as a strategic priority. Participants will explore practical, scalable approaches to protecting time, reducing cognitive overload, and fostering professional autonomy while sustaining high expectations for students. Through data points, real examples, and facilitated reflection, attendees will consider policy, technology tools, and school-level practices that meaningfully support adult wellbeing. Walk away with actionable ideas to build healthier cultures, retain great educators, and ensure those caring for learners are supported, valued, and equipped to thrive."
+  },
+  {
+    "sourceRow": 53,
+    "id": "session-52-let-them-drive-handing-students-the-career-g",
+    "title": "“Let Them Drive!”: Handing Students the Career GPS",
+    "presenters": [
+      "Featured Presenter",
+      "Victoria Thompson"
+    ],
+    "strands": [
+      "Advocacy"
+    ],
+    "description": "Students don’t need another worksheet, they need a roadmap. This session explores how educators and schools can elevate student agency by embedding career building into everyday learning. Educators and leaders will examine strategies that empower learners to identify interests, set goals, and make informed choices—starting early and evolving often. Participants will connect classroom practices to technology tools and real-world pathways, including internships, credentials, and postsecondary options, while maintaining equity and relevance. Through examples, reflection, and planning tools, attendees will leave ready to design systems and experiences to help students build confidence for life beyond graduation success."
+  },
+  {
+    "sourceRow": 54,
+    "id": "session-53-standing-up-and-standing-out-engaging-in-edu",
+    "title": "Standing Up and Standing Out: Engaging in Education Advocacy",
+    "presenters": [
+      "Featured Presenter",
+      "Victoria Thompson"
+    ],
+    "strands": [
+      "Well-being"
+    ],
+    "description": "Educators and school leaders play a critical role in shaping policy, practice, and public perception of education. This session empowers participants to move from concern to action by building advocacy skills that are informed, ethical, and impactful. Attendees will learn how to articulate priorities, tell compelling stories with technology tools, data and lived experiences, and engage effectively with stakeholders at the local, state, and national levels. The session will explore advocacy pathways including coalition building, board engagement, and legislative conversations. Participants will leave with confidence, language, and tools to stand up for their communities, influence decisions, and lead change effectively."
+  },
+  {
+    "sourceRow": 55,
+    "id": "session-54-na-lumi-ho-omaha",
+    "title": "Nā Lumi Hoʻomaha",
+    "presenters": [
+      "Kamehameha Schools – Ola Pono"
+    ],
+    "strands": [
+      "Well-being"
+    ],
+    "description": "Nā Lumi Hoʻmaha invites you to pause and reconnect in the way that fits your needs. One space offers quiet, grounding experiences that support reflection and a renewed sense of connection. The other encourages hands‑on creativity and curious engagement. You’re invited to choose the pathway that nurtures your well‑being and helps you return to your day refreshed."
+  },
+  {
+    "sourceRow": 56,
+    "id": "session-55-a-primer-on-the-mechanics-of-ai-different-mo",
+    "title": "A Primer on the Mechanics of AI: different models, data privacy and environmental considerations",
+    "presenters": [
+      "Apple Education",
+      "Apple Computer"
+    ],
+    "strands": [],
+    "description": "Learn about AI, Machine Learning, and Apple Intelligence, and how Apple securely and privately integrates them into products and services you use every day. As cloud compute costs continue to rise and concerns around data privacy mount, running AI models on devices becomes more attractive to both people and organizations."
+  }
+]
