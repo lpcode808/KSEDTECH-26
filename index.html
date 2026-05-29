@@ -50,6 +50,19 @@
 
     html { font-size: 16px; scroll-behavior: smooth; }
 
+    /* Respect attendees who ask their device to minimize motion: cut
+       transitions, animations, and smooth scrolling so jumping between
+       sessions/speakers doesn't trigger motion discomfort. */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     body {
       background: var(--bg);
       color: var(--text);
@@ -759,6 +772,85 @@
       color: var(--text-muted);
       font-size: 0.9rem;
       text-align: center;
+    }
+
+    /* "★ My Picks" pill sits beside the strand filters */
+    .strand-filter-btn.strand-filter-picks {
+      border-color: rgba(255, 200, 80, 0.4);
+      color: #ffc850;
+    }
+    .strand-filter-btn.strand-filter-picks.is-active {
+      background: rgba(255, 200, 80, 0.18);
+      border-color: rgba(255, 200, 80, 0.7);
+      color: #ffd97a;
+    }
+
+    /* Day separators that break the long flat list into Pre-Conf / Day 1 /
+       Day 2 / Catalog. Kept non-sticky so they never collide with the
+       sticky app header (whose height varies with the safe-area inset). */
+    .day-group-header {
+      margin: 1.1rem 0.75rem 0.5rem;
+      padding: 0.45rem 0.75rem;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+      border-left: 3px solid var(--teal);
+      background: rgba(7, 168, 168, 0.08);
+      border-radius: var(--radius-sm);
+    }
+    .day-group-header:first-child { margin-top: 0.4rem; }
+
+    /* Muted treatment for catalog rows without a confirmed time */
+    .session-time-tbd {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      opacity: 0.7;
+    }
+
+    .schedule-empty {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    /* Session "My Picks" star */
+    .session-item.is-starred {
+      border-color: rgba(255, 200, 80, 0.45);
+      box-shadow: inset 3px 0 0 rgba(255, 200, 80, 0.65);
+    }
+    .session-star-indicator {
+      color: #ffc850;
+      font-size: 0.85em;
+    }
+    .session-star-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.58rem 0.8rem;
+      background: rgba(255, 200, 80, 0.07);
+      border: 1px solid rgba(255, 200, 80, 0.28);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: #ffc850;
+      font-family: var(--font-body);
+      font-size: 0.79rem;
+      font-weight: 600;
+      width: 100%;
+      text-align: left;
+      transition: background 0.2s;
+      min-height: 44px;
+    }
+    .session-star-toggle:hover { background: rgba(255, 200, 80, 0.14); }
+    .session-star-toggle.is-starred {
+      background: rgba(255, 200, 80, 0.16);
+      border-color: rgba(255, 200, 80, 0.5);
     }
 
     .meta-speaker-list {
@@ -3555,11 +3647,16 @@
   // Lift "Official CONNECT strand: X." out of studentSummary into a real
   // s.strand field so it can render as a meta chip. Clears the empty
   // summary toggle on catalog entries that had no real summary written.
+  // Matches "Official CONNECT strand: X." and the plural
+  // "Official CONNECT strands: A, B, C." Both forms are lifted into a
+  // s.strands array (s.strand kept as the primary for back-compat) so
+  // multi-strand catalog rows get every chip and stay filterable.
   SCHEDULE.forEach(s => {
     if (!s.studentSummary) return;
-    const m = s.studentSummary.match(/^Official CONNECT strand:\s*(.+?)\.?\s*$/i);
+    const m = s.studentSummary.match(/^Official CONNECT strands?:\s*(.+?)\.?\s*$/i);
     if (m) {
-      s.strand = m[1].trim();
+      s.strands = m[1].split(',').map(name => name.trim()).filter(Boolean);
+      s.strand = s.strands[0] || '';
       s.studentSummary = '';
     }
   });
@@ -3576,6 +3673,7 @@
   // ──────────────────────────────────────────────────────────
   const NOTES_KEY = 'connect26_notes';
   const STARRED_SPEAKERS_KEY = 'connect26_starred_speakers';
+  const STARRED_SESSIONS_KEY = 'connect26_starred_sessions';
   const EXPORT_DOWNLOAD_REMINDER_KEY = 'connect26_export_download_reminder_hidden';
   const DELETE_ALL_CONFIRMATION = 'delete all';
   const CLEAR_STARS_CONFIRMATION = 'clear stars';
@@ -3589,6 +3687,10 @@
   const GENERAL_NOTE_ID = 'quick-note';
   let notesSearchQuery = '';
   let notesCollapsed = null; // null = auto (collapse when ≥ 3 notes), true/false = user override
+
+  function prefersReducedMotion() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
 
   function slugify(value = '') {
     return value
@@ -3724,6 +3826,41 @@
     }
     persistStarredSpeakers(starred);
     return isStarred;
+  }
+
+  function getStarredSessions() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(STARRED_SESSIONS_KEY) || '[]');
+      if (Array.isArray(raw)) {
+        return new Set(raw.filter(id => typeof id === 'string'));
+      }
+      return new Set();
+    } catch {
+      return new Set();
+    }
+  }
+
+  function persistStarredSessions(starredSet) {
+    localStorage.setItem(STARRED_SESSIONS_KEY, JSON.stringify([...starredSet]));
+  }
+
+  function toggleSessionStar(sessionId) {
+    const starred = getStarredSessions();
+    let isStarred = false;
+    if (starred.has(sessionId)) {
+      starred.delete(sessionId);
+    } else {
+      starred.add(sessionId);
+      isStarred = true;
+    }
+    persistStarredSessions(starred);
+    return isStarred;
+  }
+
+  function getStarredSessionList() {
+    const starred = getStarredSessions();
+    if (!starred.size) return [];
+    return SCHEDULE.filter(s => starred.has(s.id));
   }
 
   function getNoteCount() {
@@ -4028,22 +4165,31 @@
     if (!root) return;
     const counts = {};
     SCHEDULE.forEach(s => {
-      if (s.strand) counts[s.strand] = (counts[s.strand] || 0) + 1;
+      (s.strands || []).forEach(name => {
+        counts[name] = (counts[name] || 0) + 1;
+      });
     });
     const strands = Object.keys(counts).sort();
     if (!strands.length) {
       root.innerHTML = '';
       return;
     }
-    const totalCatalog = strands.reduce((acc, k) => acc + counts[k], 0);
+    // "All" reflects the number of catalog sessions (a session tagged with
+    // multiple strands still counts once), not the sum of strand tags.
+    const totalCatalog = SCHEDULE.filter(s => s.strands && s.strands.length).length;
     const allActive = currentStrandFilter === 'all';
     const allBtn = `<button type="button" class="strand-filter-btn ${allActive ? 'is-active' : ''}" data-strand="all" aria-pressed="${allActive}">All <span class="strand-filter-count">${totalCatalog}</span></button>`;
+    const starredCount = getStarredSessions().size;
+    const picksActive = currentStrandFilter === 'starred';
+    const picksBtn = starredCount
+      ? `<button type="button" class="strand-filter-btn strand-filter-picks ${picksActive ? 'is-active' : ''}" data-strand="starred" aria-pressed="${picksActive}">★ My Picks <span class="strand-filter-count">${starredCount}</span></button>`
+      : '';
     const strandBtns = strands.map(name => {
       const slug = name.toLowerCase();
       const isActive = currentStrandFilter === name;
       return `<button type="button" class="strand-filter-btn strand-${esc(slug)} ${isActive ? 'is-active' : ''}" data-strand="${esc(name)}" aria-pressed="${isActive}">${esc(name)} <span class="strand-filter-count">${counts[name]}</span></button>`;
     }).join('');
-    root.innerHTML = allBtn + strandBtns;
+    root.innerHTML = allBtn + picksBtn + strandBtns;
     root.querySelectorAll('.strand-filter-btn').forEach(btn => {
       btn.addEventListener('click', () => setStrandFilter(btn.dataset.strand));
     });
@@ -4058,14 +4204,23 @@
 
   function renderSchedule() {
     const notes = getNotes();
+    const starred = getStarredSessions();
     const q = (document.getElementById('scheduleSearch')?.value || '').toLowerCase().trim();
 
     // Filter logic:
-    // 1. If a strand is active, filter rows matching the strand OR having no strand at all (blocks)
-    // 2. If a search query exists, further filter sessions whose title, description, speaker, strand, or location matches.
-    let items = currentStrandFilter === 'all'
-      ? SCHEDULE
-      : SCHEDULE.filter(s => !s.strand || s.strand === currentStrandFilter);
+    // 1. "starred" keeps only sessions the attendee added to My Picks.
+    // 2. A strand keeps rows that name that strand OR have no strand (timed
+    //    blocks), so the day shape stays visible while scanning a strand.
+    // 3. A search query further narrows by title, description, speaker,
+    //    location, or strand.
+    let items;
+    if (currentStrandFilter === 'starred') {
+      items = SCHEDULE.filter(s => starred.has(s.id));
+    } else if (currentStrandFilter === 'all') {
+      items = SCHEDULE;
+    } else {
+      items = SCHEDULE.filter(s => !s.strands || !s.strands.length || s.strands.includes(currentStrandFilter));
+    }
 
     if (q) {
       items = items.filter(s => {
@@ -4073,25 +4228,46 @@
         const matchesDesc = s.description && s.description.toLowerCase().includes(q);
         const matchesSpeaker = s.speaker && s.speaker.toLowerCase().includes(q);
         const matchesLocation = s.location && s.location.toLowerCase().includes(q);
-        const matchesStrand = s.strand && s.strand.toLowerCase().includes(q);
+        const matchesStrand = (s.strands || []).some(name => name.toLowerCase().includes(q));
         return matchesTitle || matchesDesc || matchesSpeaker || matchesLocation || matchesStrand;
       });
     }
 
+    if (!items.length) {
+      const msg = currentStrandFilter === 'starred'
+        ? 'No starred sessions yet. Open a session and tap <strong>Add to My Picks</strong> to build your personal plan.'
+        : 'No sessions match the current filters.';
+      document.getElementById('scheduleList').innerHTML = `<div class="schedule-empty">${msg}</div>`;
+      updateNoteCount();
+      return;
+    }
+
+    let lastDay = null;
     const html = items.map(s => {
       const note = notes[noteKey(NOTE_TYPES.SESSION, s.id)];
       const hasNote = !!note;
+      const isStarred = starred.has(s.id);
       const hasSubs = s.subItems && s.subItems.length > 0;
       const notePanelId = `notebody-session-${s.id}`;
       const research = getSessionResearch(s.id);
+
+      let dayHeader = '';
+      if (s.day && s.day !== lastDay) {
+        lastDay = s.day;
+        dayHeader = `<h3 class="day-group-header">${esc(s.day)}</h3>`;
+      }
+
+      const timeDisplay = (!s.time || s.time === 'TBD')
+        ? '<span class="session-time-tbd">TBD</span>'
+        : esc(s.time);
 
       const metaParts = [];
       if (s.speaker && s.type !== 'meal' && s.type !== 'break' && s.type !== 'background') {
         metaParts.push(speakerMetaMarkup(s.speaker));
       }
-      if (s.strand) {
-        metaParts.push(`<span class="meta-item meta-strand strand-${esc(s.strand.toLowerCase())}"><span class="meta-icon">🌺</span>${esc(s.strand)}</span>`);
-      }
+      (s.strands || []).forEach(name => {
+        metaParts.push(`<span class="meta-item meta-strand strand-${esc(name.toLowerCase())}"><span class="meta-icon">🌺</span>${esc(name)}</span>`);
+      });
       if (s.location) {
         metaParts.push(`<span class="meta-item"><span class="meta-icon">📍</span>${esc(s.location)}</span>`);
       }
@@ -4120,12 +4296,13 @@
       ` : '';
 
       return `
-        <div class="session-item type-${s.type}" id="item-${s.id}">
+        ${dayHeader}
+        <div class="session-item type-${s.type} ${isStarred ? 'is-starred' : ''}" id="item-${s.id}">
           <button class="session-trigger" aria-expanded="false" data-id="${s.id}" aria-controls="body-${s.id}">
-            <span class="session-time">${esc(s.time)}</span>
+            <span class="session-time">${timeDisplay}</span>
             <span class="session-main">
               <span class="session-badge badge-${s.type}">${BADGE_LABELS[s.type] || s.type}</span>
-              <span class="session-title">${esc(s.title)}</span>
+              <span class="session-title">${isStarred ? '<span class="session-star-indicator" aria-hidden="true">★</span> ' : ''}${esc(s.title)}</span>
               ${speakerPreview(s.speaker, s.type)}
             </span>
             <span class="session-chevron" aria-hidden="true">▾</span>
@@ -4136,6 +4313,10 @@
               ${s.description ? `<p class="session-description">${esc(s.description)}</p>` : ''}
               ${subItemsHtml}
               <div class="session-actions">
+                <button class="session-star-toggle ${isStarred ? 'is-starred' : ''}" type="button" data-session-star-id="${s.id}" aria-pressed="${isStarred}">
+                  <span aria-hidden="true">${isStarred ? '⭐' : '☆'}</span>
+                  <span>${isStarred ? 'In My Picks — tap to remove' : 'Add to My Picks'}</span>
+                </button>
                 ${s.studentSummary ? `
                   <button class="summary-toggle" data-id="${s.id}" aria-expanded="false">
                     <span aria-hidden="true">🤖</span> Plain-language summary
@@ -4252,7 +4433,45 @@
       btn.addEventListener('click', () => openSpeakerContext(btn.dataset.speakerId));
     });
 
+    root.querySelectorAll('.session-star-toggle').forEach(btn => {
+      btn.addEventListener('click', () => handleSessionStarToggle(btn));
+    });
+
     bindNoteEditors(root);
+  }
+
+  function handleSessionStarToggle(btn) {
+    const id = btn.dataset.sessionStarId;
+    const isStarred = toggleSessionStar(id);
+    showToast(isStarred ? 'Added to My Picks ★' : 'Removed from My Picks');
+
+    // In the My Picks view an unstarred row must leave the list, so re-render.
+    // If that was the last pick, fall back to the full schedule.
+    if (currentStrandFilter === 'starred') {
+      if (getStarredSessions().size === 0) currentStrandFilter = 'all';
+      renderStrandFilter();
+      renderSchedule();
+      return;
+    }
+
+    // Otherwise update in place so the open card and scroll position are kept.
+    const item = document.getElementById('item-' + id);
+    if (item) {
+      item.classList.toggle('is-starred', isStarred);
+      const titleEl = item.querySelector('.session-title');
+      const existing = titleEl && titleEl.querySelector('.session-star-indicator');
+      if (titleEl && isStarred && !existing) {
+        titleEl.insertAdjacentHTML('afterbegin', '<span class="session-star-indicator" aria-hidden="true">★</span> ');
+      } else if (existing && !isStarred) {
+        existing.remove();
+      }
+    }
+    btn.classList.toggle('is-starred', isStarred);
+    btn.setAttribute('aria-pressed', String(isStarred));
+    btn.innerHTML = isStarred
+      ? '<span aria-hidden="true">⭐</span><span>In My Picks — tap to remove</span>'
+      : '<span aria-hidden="true">☆</span><span>Add to My Picks</span>';
+    renderStrandFilter();
   }
 
   // ── TOGGLE HELPERS ──
@@ -4656,12 +4875,26 @@
       ''
     ];
 
-    if (noteList.length === 0) {
-      lines.push('No notes saved yet.');
+    const picks = getStarredSessionList();
+
+    if (noteList.length === 0 && picks.length === 0) {
+      lines.push('No notes or starred sessions yet.');
       return lines.join('\n');
     }
 
     lines.push('---', '');
+
+    if (picks.length) {
+      lines.push('## ★ My Picks', '');
+      picks.forEach(s => {
+        const when = (!s.time || s.time === 'TBD') ? 'Time TBD' : `${s.time}${s.timeEnd ? '–' + s.timeEnd : ''}`;
+        const where = s.location ? ` · ${s.location}` : '';
+        const strands = (s.strands && s.strands.length) ? ` · ${s.strands.join(', ')}` : '';
+        lines.push(`- **${s.title}** — ${s.day || ''} · ${when}${where}${strands}`);
+      });
+      lines.push('');
+      if (noteList.length) lines.push('---', '');
+    }
 
     noteList.forEach((note, index) => {
       lines.push(`## ${noteTypeLabel(note.type)}`);
@@ -5832,7 +6065,7 @@
         }
       }
 
-      item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      item.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
     }, 80);
   }
 
@@ -5857,7 +6090,7 @@
         }
       }
 
-      item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      item.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
     }, 80);
   }
 

@@ -2,6 +2,25 @@
 
 This document is for any future agent, merge harness, or teammate combining this project with another codebase.
 
+## 2026-05-29 Usability Pass — 3-Persona Walkthrough + Top-5 Fixes
+
+Ran a deep usability assessment (three attendee personas — Kumu Mahina, Jordan Park, Maile Reyes — walked the live app, took notes, reconciled, and prioritized). Full write-up: [`_docs/usability-assessment-2026-05-29.md`](./_docs/usability-assessment-2026-05-29.md). Implemented the top 5 items, all in root `index.html` (+ a `sw.js` cache bump to `connect26-guide-v7`):
+
+1. **Multi-strand data fix.** The lift step previously only matched the singular `Official CONNECT strand: X`, so **12 of 55 catalog rows** (11 multi-strand + 1 unspecified) got **no strand chip and were invisible to the filter**, and the "All" pill read 43 instead of the advertised catalog. Now both `strand:`/`strands:` forms parse into a `s.strands[]` array; chips render per strand; the filter keeps a row if `s.strands.includes(active)`; counts are correct (Transformation 21 · Agency 21 · Culture 19 · Well-being 12 · Advocacy 8; All = 54 rows-with-a-strand). `s.strand` is kept as the primary for back-compat.
+2. **Day grouping.** `renderSchedule()` now emits a `.day-group-header` whenever the `day` label changes (Pre-Conference / Day 1 / Day 2 / Session Catalog), breaking the flat 72-row list. Headers are intentionally **non-sticky** — the sticky app header's height varies with the safe-area inset, so a sticky day header at `top:0` would render behind it. If you want them sticky later, measure the header and set `top: var(--app-header-h)`.
+3. **TBD de-noising.** Catalog rows with `time: "TBD"` now render a muted `.session-time-tbd` chip instead of a clock-like "TBD" in the time column.
+4. **`prefers-reduced-motion`.** Global media query neutralizes transitions/animations + smooth scroll; the two `scrollIntoView` calls now use `prefersReducedMotion() ? 'auto' : 'smooth'`.
+5. **Session starring ("My Picks").** New `connect26_starred_sessions` localStorage key with `getStarredSessions` / `toggleSessionStar` / `persistStarredSessions` mirroring the speaker-star helpers. Per-session star button + `★` title indicator + left-rail highlight, a **★ My Picks** pill in the filter row (`currentStrandFilter === 'starred'`), and a **★ My Picks** section in the markdown export. Toggling updates in place to preserve scroll/open state; in the My Picks view it re-renders (and falls back to All when the last pick is removed).
+
+**Verification:** inline JS extracted and `node --check`'d clean; strand parsing/counts verified by running the actual lift+filter logic over the extracted `SCHEDULE` in Node. No headless browser was available in this environment, so a **manual mobile browser pass is still recommended** (visual spacing of day headers, star toggle feel, My Picks pill).
+
+**Remaining backlog (next agent):**
+- **Offline-safe QR (item 6).** `#qrModal` embeds a remote image from `api.qrserver.com` → it **fails offline**, contradicting the offline-first promise and the `_docs/beginner-explainer.html` claim of a "client-side QR generator." Fix by committing a local QR asset for the fixed app URL, or adding a small client-side generator.
+- **Speaker affiliation badges (item 7).** Mahina wants KS / DOE / community / vendor at-a-glance; data lives in `speaker.company`.
+- **Richer search (item 8).** Schedule search ignores `studentSummary`; Speakers search doesn't match the titles of sessions a person presents.
+- **Dead `subItems` (item 9).** "Who's In The Room" never renders (all arrays empty) — remove or populate.
+- **Stale `README.md` (item 10).** Still describes the old marketing microsite, not this Schedule/Speakers/Notes app.
+
 ## 2026-05-26 Add "How It Works" Easter Egg and Beginner Walkthrough
 
 Added a subtle, non-technical developer/curious-attendee walkthrough as an easter egg:
